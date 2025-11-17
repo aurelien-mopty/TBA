@@ -28,33 +28,50 @@ class Game:
         self.commands["go"] = go
         
         # Setup rooms
+        
 
-        forest = Room("Forest", "une forêt enchantée. Vous entendez une brise légère à travers la cime des arbres.")
-        self.rooms.append(forest)
-        tower = Room("Tower", "une immense tour en pierre qui s'élève au dessus des nuages.")
-        self.rooms.append(tower)
-        cave = Room("Cave", "une grotte profonde et sombre. Des voix semblent provenir des profondeurs.")
-        self.rooms.append(cave)
-        cottage = Room("Cottage", "un petit chalet pittoresque avec un toit de chaume. Une épaisse fumée verte sort de la cheminée.")
-        self.rooms.append(cottage)
-        swamp = Room("Swamp", "un marécage sombre et ténébreux. L'eau bouillonne, les abords sont vaseux.")
-        self.rooms.append(swamp)
-        castle = Room("Castle", "un énorme château fort avec des douves et un pont levis. Sur les tours, des flèches en or massif.")
-        self.rooms.append(castle)
+        Hall_d_entree = Room("Hall_d_entree", "Le hall d'entrée de la fameuse école de magie Poudlard. Vous entendez une brise légère à travers la cime des arbres.")
+        self.rooms.append(Hall_d_entree)
+        Chambre_des_secrets= Room("Chambre_des_secrets", "une immense tour en pierre qui s'élève au dessus des nuages.")
+        self.rooms.append(Chambre_des_secrets)
+        Toilettes = Room("Toilettes", "une grotte profonde et sombre. Des voix semblent provenir des profondeurs.")
+        self.rooms.append(Toilettes)
+        Couloir = Room("Couloir", "un petit chalet pittoresque avec un toit de chaume. Une épaisse fumée verte sort de la cheminée.")
+        self.rooms.append(Couloir)
+        Dortoirs = Room("Dortoirs", "un marécage sombre et ténébreux. L'eau bouillonne, les abords sont vaseux.")
+        self.rooms.append(Dortoirs)
+        Salle_secrete = Room("Salle_secrete ", "un énorme château fort avec des douves et un pont levis. Sur les tours, des flèches en or massif.")
+        self.rooms.append(Salle_secrete)
+        Salle_a_manger = Room("Salle_a_manger ", "un énorme château fort avec des douves et un pont levis. Sur les tours, des flèches en or massif.")
+        self.rooms.append(Salle_a_manger)
+        Jardin = Room("Jardin ", "un énorme château fort avec des douves et un pont levis. Sur les tours, des flèches en or massif.")
+        self.rooms.append(Jardin)
+        Terrain_de_quidditch = Room("Terrain_de_quidditch", "un énorme château fort avec des douves et un pont levis. Sur les tours, des flèches en or massif.")
+        self.rooms.append(Terrain_de_quidditch)
+        Cabane_d_hagrid = Room("Cabane_d_hagrid", "un énorme château fort avec des douves et un pont levis. Sur les tours, des flèches en or massif.")
+        self.rooms.append(Cabane_d_hagrid)
+        Foret_interdite = Room("Foret_interdite ", "un énorme château fort avec des douves et un pont levis. Sur les tours, des flèches en or massif.")
+        self.rooms.append(Foret_interdite)
 
         # Create exits for rooms
 
-        forest.exits = {"N" : cave, "E" : None, "S" : castle, "O" : None}
-        tower.exits = {"N" : cottage, "E" : None, "S" : None, "O" : None}
-        cave.exits = {"N" : None, "E" : cottage, "S" : forest, "O" : None}
-        cottage.exits = {"N" : None, "E" : None, "S" : tower, "O" : cave}
-        swamp.exits = {"N" : tower, "E" : None, "S" : None, "O" : castle}
-        castle.exits = {"N" : forest, "E" : swamp, "S" : None, "O" : None}
+        Hall_d_entree.exits = {"N" : Couloir, "E" : None, "S" : Jardin, "O" :None , "U":None,"D":None}
+        Chambre_des_secrets.exits = {"N" : None, "E" : None, "S" : None, "O" : None,"U":None,"D":None}
+        Toilettes.exits = {"N" : None, "E" : Couloir, "S" : None, "O" : None ,"U":None,"D":Chambre_des_secrets}
+        Couloir.exits = {"N" : Salle_a_manger, "E" :None, "S" : Hall_d_entree, "O" : Toilettes,"U":Dortoirs,"D":None}
+        Dortoirs.exits = {"N" : None, "E" : None, "S" : None, "O" :None,"U":None,"D":Couloir}
+        Salle_secrete.exits = {"N" : None, "E" : None, "S" : Dortoirs, "O" : None,"U":None,"D":None}
+        Salle_a_manger.exits = {"N" : None, "E" : Salle_secrete, "S" : Couloir, "O" :None,"U":None,"D":None}
+        Jardin.exits = {"N" : Hall_d_entree, "E" :Foret_interdite , "S" : None, "O" : Terrain_de_quidditch,"U":None,"D":None}
+        Terrain_de_quidditch.exits = {"N" : None, "E" : Jardin, "S" : Cabane_d_hagrid, "O" :None,"U":None,"D":None }
+        Cabane_d_hagrid.exits = {"N" : Terrain_de_quidditch, "E" : None, "S" : None, "O" :None,"U":None,"D":None }
+        Foret_interdite.exits = {"N" : None, "E" : None, "S" : None, "O" :Jardin,"U":None,"D":None}
 
+        
         # Setup player and starting room
 
         self.player = Player(input("\nEntrez votre nom: "))
-        self.player.current_room = swamp
+        self.player.current_room =Hall_d_entree
 
     # Play the game
     def play(self):
