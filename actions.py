@@ -54,7 +54,18 @@ class Actions:
             return False
 
         # Get the direction from the list of words.
+        directionpossible= [
+        (["N", "NORD"], "N"),
+        (["S", "SUD"], "S"),
+        (["E", "EST"], "E"),
+        (["O", "OUEST"], "O"),
+        (["U", "HAUT","UP"], "U"),
+        (["D", "BAS","DOWN"], "D"),]
         direction = list_of_words[1].upper()
+        for liste in directionpossible:
+            if direction in liste[0] :
+                direction=liste[1]
+        
         if direction not in game.valid_directions:
             print(f"\n La direction {direction} n'est pas valide. Les directions possibles sont : {', '.join(sorted(game.valid_directions))}\n")
             return False
