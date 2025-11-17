@@ -1,6 +1,6 @@
 # Description: Game class
 # Import modules
-a
+
 from room import Room
 from player import Player
 from command import Command
