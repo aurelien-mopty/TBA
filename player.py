@@ -31,11 +31,16 @@ class Player():
         self.name = name
         self.current_room = None
         self.history=[]
+        self.past_room=[]
+        
+
     
     # Define the move method.
     def move(self, direction):
         # Get the next room from the exits dictionary of the current room.
         next_room = self.current_room.exits[direction]
+
+        self.past_room.append(self.current_room)
 
         # If the next room is None, print an error message and return False.
         if next_room is None:
@@ -48,8 +53,10 @@ class Player():
             self.history.append(self.current_room)
         
         # Set the current room to the next room.
+
         self.current_room = next_room
         print(self.current_room.get_long_description())
+       
         
         print(self.get_history())
         return True
