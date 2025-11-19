@@ -44,7 +44,7 @@ class Room:
             return self.exits[direction]
         else:
             return None
-    
+    def 
     # Return a string describing the room's exits.
     def get_exit_string(self):
         exit_string = "Sorties: " 
