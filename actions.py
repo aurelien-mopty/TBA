@@ -180,9 +180,9 @@ class Actions:
             print(player.current_room.get_long_description())
             
 
-            for room.name in player.history:
-                if room.name not in player.past_room.pop():
-                    player.history=player.history.pop()
+            for piece in player.history:
+                if piece not in player.past_room[:-1]:
+                    player.history=player.history[-1]
                     print(player.get_history())
             else:
                 print(player.get_history())
