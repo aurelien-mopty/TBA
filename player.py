@@ -31,7 +31,7 @@ class Player():
         self.name = name
         self.current_room = None
         self.history=[]
-        self.past_room=[]
+        #self.past_room=[]
         
 
     
@@ -40,7 +40,7 @@ class Player():
         # Get the next room from the exits dictionary of the current room.
         next_room = self.current_room.exits[direction]
 
-        self.past_room.append(self.current_room)
+        #self.past_room.append(self.current_room)
 
         # If the next room is None, print an error message and return False.
         if next_room is None:
@@ -60,7 +60,10 @@ class Player():
         
         print(self.get_history())
         return True
-
+    
+    def can_back(self):
+        return self.history!=[]
+    
     def get_history(self):
         str_history=" Vous avez déja visité:\n"
         for room in self.history:

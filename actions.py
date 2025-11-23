@@ -173,16 +173,16 @@ class Actions:
             print(MSG0.format(command_word=command_word))
             return False
 
-        if len(player.history)==0:
+        if not player.can_back():
             print("Vous ne pouvez pas revenir en arriere")
-        else:       
-            player.current_room=player.past_room[-1]  
-            print(player.current_room.get_long_description())
+            return
+    
+        player.current_room=player.history[-1]  
+        print(player.current_room.get_long_description())
             
-
-            for piece in player.history:
-                if piece not in player.past_room[:-1]:
-                    player.history=player.history[-1]
-                    print(player.get_history())
+        for piece in player.history:
+            if piece not in player.history[:-1]:
+                player.history=player.history[:-1]
+                print(player.get_history())
             else:
                 print(player.get_history())
