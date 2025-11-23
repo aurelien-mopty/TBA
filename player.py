@@ -31,7 +31,8 @@ class Player():
         self.name = name
         self.current_room = None
         self.history=[]
-        #self.past_room=[]
+        self.visited_rooms_indexs = {}
+        self.past_room=[]
         
 
     
@@ -40,17 +41,19 @@ class Player():
         # Get the next room from the exits dictionary of the current room.
         next_room = self.current_room.exits[direction]
 
-        #self.past_room.append(self.current_room)
-
         # If the next room is None, print an error message and return False.
         if next_room is None:
             print("\nAucune porte dans cette direction !\n")
             return False
 
+        self.past_room.append(self.current_room)
         #self.history.append(self.current_room)
 
         if self.current_room not in self.history:
             self.history.append(self.current_room)
+            self.visited_rooms_indexs[self.current_room.name]=1
+        else:
+            self.visited_rooms_indexs[self.current_room.name]+=1
         
         # Set the current room to the next room.
 

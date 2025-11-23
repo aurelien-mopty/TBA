@@ -176,13 +176,12 @@ class Actions:
         if not player.can_back():
             print("Vous ne pouvez pas revenir en arriere")
             return
-    
-        player.current_room=player.history[-1]  
+        deleted_room = player.past_room.pop() 
+        player.current_room = deleted_room
+        player.visited_rooms_indexs[deleted_room.name]-=1
+        if player.visited_rooms_indexs[deleted_room.name]==0:
+            player.visited_rooms_indexs.pop(deleted_room.name)
+            player.history.remove(deleted_room)
         print(player.current_room.get_long_description())
-            
-        for piece in player.history:
-            if piece not in player.history[:-1]:
-                player.history=player.history[:-1]
-                print(player.get_history())
-            else:
-                print(player.get_history())
+        print(player.get_history())
+        

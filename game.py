@@ -16,7 +16,7 @@ class Game:
         self.commands = {}
         self.player = None
         self.valid_directions = set()
-        self.visited_rooms_indexs = []
+        
     
     # Setup the game
     def setup(self):
