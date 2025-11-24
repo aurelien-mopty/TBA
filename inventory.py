@@ -6,7 +6,13 @@ class Inventory:
         self.items = {}
 
     def add_item(self, item):
-        self.items[item.name] = item
+        self.items[item] = item
+
+    def remove_item(self,item):
+        if item in self.item:
+            del self.item[item]
+            return True
+        return False
 
     def get_inventory(self,ch1,ch2):   
         if len(self.items)==0:

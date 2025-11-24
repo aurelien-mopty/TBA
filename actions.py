@@ -210,3 +210,21 @@ class Actions:
             return False
 
         print(player.current_room.get_inventory_room())
+
+    def take(game, list_of_words, number_of_parameters):
+        player = game.player
+        l = len(list_of_words)
+        # If the number of parameters is incorrect, print an error message and return False.
+        if l != number_of_parameters + 1:
+            command_word = list_of_words[0]
+            print(MSG1.format(command_word=command_word))
+
+        room=player.current_room
+        item_name = list_of_words[1]
+        if item_name not in room.inventory_room.items:
+            print(f"L'objet '{item_name}' n'est pas présent ici.")
+            return False
+        item = room.inventory_room.items[item_name]
+        player.inventory.add_item(item_name)
+        player.inventory_room.remove_item(item_name)
+        return True
