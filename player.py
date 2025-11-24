@@ -64,10 +64,10 @@ class Player():
         print(self.get_history())
         return True
     
-    def can_back(self):
+    def can_back(self):#Verifie si la liste history  est vide , si oui
         return self.history!=[]
     
-    def get_history(self):
+    def get_history(self): 
         str_history=" Vous avez déja visité:\n"
         for room in self.history:
             str_history+="-" + room.name +"\n"

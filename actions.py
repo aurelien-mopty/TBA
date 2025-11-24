@@ -173,15 +173,19 @@ class Actions:
             print(MSG0.format(command_word=command_word))
             return False
 
-        if not player.can_back():
+        if not player.can_back():#Verifie si la liste history  est vide , si oui
             print("Vous ne pouvez pas revenir en arriere")
             return
-        deleted_room = player.past_room.pop() 
-        player.current_room = deleted_room
-        player.visited_rooms_indexs[deleted_room.name]-=1
-        if player.visited_rooms_indexs[deleted_room.name]==0:
-            player.visited_rooms_indexs.pop(deleted_room.name)
-            player.history.remove(deleted_room)
-        print(player.current_room.get_long_description())
-        print(player.get_history())
+        if player.current_room.name=="Chambre_des_secrets":
+            print("Vous ne pouvez pas sortir")
+        else:
+
+            deleted_room = player.past_room.pop() 
+            player.current_room = deleted_room
+            player.visited_rooms_indexs[deleted_room.name]-=1 
+            if player.visited_rooms_indexs[deleted_room.name]==0:
+                player.visited_rooms_indexs.pop(deleted_room.name)
+                player.history.remove(deleted_room)
+            print(player.current_room.get_long_description())
+            print(player.get_history())
         
