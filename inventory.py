@@ -5,6 +5,8 @@ class Inventory:
     def __init__(self):
         self.items = {}
 
+    def add_item(self, item):
+        self.items[item.name] = item
 
     def get_inventory(self,ch1,ch2):   
         if len(self.items)==0:

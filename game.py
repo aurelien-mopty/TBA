@@ -43,24 +43,37 @@ class Game:
 
         Hall_d_entree = Room("Hall_d_entree", "Le hall d'entrée de la fameuse école de magie Poudlard. Un elève pressé d'aller manger vous bouscule.")
         self.rooms.append(Hall_d_entree)
+
         Chambre_des_secrets= Room("Chambre_des_secrets", "la chambre des secrets. Une odeur putride émmane du sol . Vous vous cachez derrière un mur pour échapper à la vision du Basilic.")
         self.rooms.append(Chambre_des_secrets)
+
         Toilettes = Room("Toilettes", "les toilettes .Vous remarquez qu'une odeur se dégage des escaliers menant vers une pièce sombre.")
         self.rooms.append(Toilettes)
+        Toilettes.inventory_room.add_item(Item("baguette","Cette baguette vous permet de lancer des sorts ",2))
+       
         Couloir = Room("Couloir", "le couloir . Un surveillant vous presse pour que vous ne restiez pas oisif dans le couloir. Il est à peine 13h mais étant fatigué vous avez envie monté aux dortoirs pour faire une sieste.")
         self.rooms.append(Couloir)
+
         Dortoirs = Room("Dortoirs", "les dortoirs .Une petite fée malicieuse se trouve sur votre lit , vous vous demandez comment ce petit etre vicieux à pu rentrer dans votre chambre.")
         self.rooms.append(Dortoirs)
+        
         Salle_secrete = Room("Salle_secrete ", "la salle secrete.Peu d'eleves connaissent l'existence de cette endroit, mais les habitués du lieu s'y cachent pour consommer leur poudre de mandragore ou pour acceder rapidement aux dortoirs.")
         self.rooms.append(Salle_secrete)
+        
         Salle_a_manger = Room("Salle_a_manger ", " la salle à manger.La delicieuse odeur de poulet roti vous donnes faim . Vous remarquer un petit passage dérobé derriere le buffet.")
         self.rooms.append(Salle_a_manger)
+        
         Jardin = Room("Jardin ", " le jardin. Il y'a des plantes magiques provenant des quatres coins du monde.Des domestiques gobelins taillent les haies .")
         self.rooms.append(Jardin)
+        
         Terrain_de_quidditch = Room("Terrain_de_quidditch", " sur le terrain de quidditch .L'équipe de serpentard s'entraine pour la finale de la coupe de Poudelard. Vous avez failli vous prendre la balle en pleine tete.")
         self.rooms.append(Terrain_de_quidditch)
+        Terrain_de_quidditch.inventory_room.add_item(Item("balai","Ce balai vous permet de vous envoler dans les cieux",3))
+        
         Cabane_d_hagrid = Room("Cabane_d_hagrid", "la cabane d'Hagrid.Cette maisonnette est petite mais le feu de bois vous rechauffe . Vous remarquez que le coffre d'Hagrid est ouvert")
         self.rooms.append(Cabane_d_hagrid)
+        Cabane_d_hagrid.inventory_room.add_item(Item("oeuf de dragon","Attention , il va bientot éclore ",5))
+        
         Foret_interdite = Room("Foret_interdite ", "la foret interdite. Vous entendez un loup garou au loin , mieux vaut ne pas s'impatienter ici.")
         self.rooms.append(Foret_interdite)
 
