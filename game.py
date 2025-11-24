@@ -1,7 +1,7 @@
 # Description: Game class
 # Import modules
 
-
+from item import Item
 from room import Room
 from player import Player
 from command import Command
@@ -33,6 +33,10 @@ class Game:
         self.commands["history"] = history
         back = Command("back", " : retourner en arrière ", Actions.back, 0)
         self.commands["back"] = back
+        inventory = Command("inventory", " : afficher l'inventaire ", Actions.inventory, 0)
+        self.commands["inventory"] = inventory
+        look = Command("look", " : afficher l'inventaire de la piece ", Actions.look, 0)
+        self.commands["look"] = look
         
         # Setup rooms
         
@@ -115,7 +119,9 @@ class Game:
 
     # Print the welcome message
     def print_welcome(self):
-        print(f"\nBienvenue {self.player.name} dans ce jeu d'aventure !")
+        print(f"\nBienvenue {self.player.name} dans ce jeu d'aventure !")    
+
+
         print("Entrez 'help' si vous avez besoin d'aide.")
         #
         print(self.player.current_room.get_long_description())

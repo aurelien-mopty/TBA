@@ -1,4 +1,5 @@
 # Define the Player class.
+from inventory import Inventory
 class Player():
     """
     Représente un joueur dans le jeu d'aventure.
@@ -33,6 +34,7 @@ class Player():
         self.history=[]
         self.visited_rooms_indexs = {}
         self.past_room=[]
+        self.inventory=Inventory()
         
 
     
@@ -72,3 +74,12 @@ class Player():
         for room in self.history:
             str_history+="-" + room.name +"\n"
         return str_history
+    
+    
+    def get_inventory_player(self): 
+        ch1="Votre inventaire est vide."
+        ch2="Vous disposez des items suivants :\n"
+        return self.inventory.get_inventory(ch1,ch2)
+         
+
+
