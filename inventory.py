@@ -6,11 +6,11 @@ class Inventory:
         self.items = {}
 
     def add_item(self, item):
-        self.items[item] = item
+        self.items[item.name] = item
 
-    def remove_item(self,item):
-        if item in self.item:
-            del self.item[item]
+    def remove_item(self,item_name):
+        if item_name in self.items:
+            del self.items[item_name]
             return True
         return False
 
