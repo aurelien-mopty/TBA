@@ -179,7 +179,9 @@ class Actions:
         if player.current_room.name=="Chambre_des_secrets":
             print("Vous ne pouvez pas sortir")
         else:
-
+            #lorsque l'on a déjà visité une pièce, on décrémente la valeur associée à la clé du dictionnaire
+            #self.visited_rooms_indexs pour ne pas supprimer la pièce de l'historique
+            #lorqu'une pièce n'est visitée qu'une fois, cette dernière est bien supprimée de l'historique
             deleted_room = player.past_room.pop() 
             player.current_room = deleted_room
             player.visited_rooms_indexs[deleted_room.name]-=1 
