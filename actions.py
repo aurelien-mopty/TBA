@@ -230,3 +230,21 @@ class Actions:
         player.inventory.add_item(item)
         room.inventory_room.remove_item(item_name)
         return True
+    
+    def drop(game, list_of_words, number_of_parameters):
+        player = game.player
+        l = len(list_of_words)
+        # If the number of parameters is incorrect, print an error message and return False.
+        if l != number_of_parameters + 1:
+            command_word = list_of_words[0]
+            print(MSG1.format(command_word=command_word))
+
+        room=player.current_room
+        item_name = list_of_words[1].lower()
+        if item_name not in player.inventory.items:
+            print(f"L'objet '{item_name}' n'est pas dans votre inventaire.")
+            return False
+        item= player.inventory.items[item_name]
+        player.inventory.remove_item(item_name)
+        room.inventory_room.add_item(item)
+        return True
