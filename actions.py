@@ -223,10 +223,9 @@ class Actions:
 
         room=player.current_room
         item_name = list_of_words[1]
-        print(room.inventory_room.items)
-        if item_name not in room.inventory_room.items:
-            print(f"L'objet '{item_name}' n'est pas présent ici.")
-            return False
+
+
+
         item= room.inventory_room.items[item]
         game.inventory.add_item(item)
         room.inventory_room.remove_item(item)
