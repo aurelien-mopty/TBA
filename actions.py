@@ -229,6 +229,7 @@ class Actions:
         item= room.inventory_room.items[item_name]
         player.inventory.add_item(item)
         room.inventory_room.remove_item(item_name)
+        print(f"Vous avez pris l'objet '{item_name}' ")
         return True
     
     def drop(game, list_of_words, number_of_parameters):
@@ -247,4 +248,5 @@ class Actions:
         item= player.inventory.items[item_name]
         player.inventory.remove_item(item_name)
         room.inventory_room.add_item(item)
+        print(f"vous avez déposé l'objet '{item_name}' ")
         return True
