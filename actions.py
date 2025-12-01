@@ -214,7 +214,6 @@ class Actions:
         print(player.current_room.get_inventory_room())
 
     def take(game, list_of_words, number_of_parameters):
-        #test
         player = game.player
         l = len(list_of_words)
         # If the number of parameters is incorrect, print an error message and return False.
