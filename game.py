@@ -37,7 +37,7 @@ class Game:
         self.commands["inventory"] = inventory
         look = Command("look", " : afficher l'inventaire de la piece ", Actions.look, 0)
         self.commands["look"] = look
-        take = Command("take", " : prendre item ", Actions.take, 0)
+        take = Command("take", " : prendre item ", Actions.take, 1)
         self.commands["take"] = take
         
         # Setup rooms
