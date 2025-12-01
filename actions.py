@@ -227,6 +227,13 @@ class Actions:
             print(f"L'objet '{item_name}' n'est pas présent ici.")
             return False
         item= room.inventory_room.items[item_name]
+        current_weight=sum(item.weight for item in player.inventory.items.values())
+        new_weight = current_weight + item.weight
+        if new_weight>player.max_weight:
+            print(f"L'objet est trop lourd !")
+            return False
+
+        
         player.inventory.add_item(item)
         room.inventory_room.remove_item(item_name)
         print(f"Vous avez pris l'objet '{item_name}' ")

@@ -36,6 +36,8 @@ class Player():
         self.past_room=[]
         self.inventory=Inventory()
         
+        self.max_weight=1
+        
 
     
     # Define the move method.
