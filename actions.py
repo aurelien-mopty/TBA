@@ -191,7 +191,7 @@ class Actions:
             print(player.current_room.get_long_description())
             print(player.get_history())
         
-    def inventory(game, list_of_words, number_of_parameters):
+    def check(game, list_of_words, number_of_parameters):
         player = game.player
         l = len(list_of_words)
         # If the number of parameters is incorrect, print an error message and return False.
