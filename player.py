@@ -37,6 +37,7 @@ class Player():
         self.inventory=Inventory()
         
         self.max_weight=1
+
         
 
     

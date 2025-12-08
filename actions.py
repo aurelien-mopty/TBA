@@ -190,6 +190,8 @@ class Actions:
                 player.history.remove(deleted_room)
             print(player.current_room.get_long_description())
             print(player.get_history())
+
+            
         
     def check(game, list_of_words, number_of_parameters):
         player = game.player
@@ -237,6 +239,7 @@ class Actions:
         player.inventory.add_item(item)
         room.inventory_room.remove_item(item_name)
         print(f"Vous avez pris l'objet '{item_name}' ")
+        
         return True
     
     def drop(game, list_of_words, number_of_parameters):
