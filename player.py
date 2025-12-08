@@ -42,6 +42,10 @@ class Player():
     # Define the move method.
     def move(self, direction):
         # Get the next room from the exits dictionary of the current room.
+        if direction in self.current_room.doors and self.current_room.doors[direction].locked:
+            print(f"\nLa porte vers le {direction} est verrouillée. Vous devez la déverrouiller d'abord.\n")
+            return False
+        
         next_room = self.current_room.exits[direction]
 
         # If the next room is None, print an error message and return False.
