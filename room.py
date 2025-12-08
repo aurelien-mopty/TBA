@@ -1,5 +1,6 @@
 # Define the Room class.
 from inventory import Inventory
+from door import Door
 class Room:
     """
     Représente une pièce dans le jeu d'aventure.
@@ -35,30 +36,49 @@ class Room:
         self.name = name
         self.description = description
         self.exits = {}
+        self.doors = {}
         self.inventory_room=Inventory()
     
     # Define the get_exit method.
     def get_exit(self, direction):
-
-        # Return the room in the given direction if it exists.
-        if direction in self.exits.keys():
+        if direction in self.exits:
             return self.exits[direction]
-        else:
-            return None
+        elif direction in self.doors:
+            if not self.doors[direction].locked:
+                return self.doors[direction].room
+        return None
     
         
     # Return a string describing the room's exits.
     def get_exit_string(self):
-        exit_string = "Sorties: " 
-        for exit in self.exits.keys():
-            if self.exits.get(exit) is not None:
-                exit_string += exit + ", "
-        exit_string = exit_string.strip(", ")
+        exit_string = "Sorties: "
+        exits = []
+
+        # Ajouter les sorties normales
+        for exit in self.exits:
+            if self.exits[exit] is not None:
+                exits.append(exit)
+
+        # Ajouter les portes déverrouillées
+        for door_dir in self.doors:
+            if not self.doors[door_dir].locked:
+                # Vérifier si cette direction n'est pas déjà dans les sorties normales
+                if door_dir not in exits:
+                    exits.append(door_dir)
+        if exits:
+            exit_string += ", ".join(exits)
+        else:
+            exit_string += "Aucune"
         return exit_string
+
 
     # Return a long description of this room including exits.
     def get_long_description(self):
-        return f"\nVous êtes dans {self.description}\n\n{self.get_exit_string()}\n"
+        description = f"\nVous êtes dans {self.description}\n\n{self.get_exit_string()}\n"
+        for door_dir, door in self.doors.items():
+            if door.locked:
+                description += f"Il y a une porte verrouillée vers le {door_dir}.\n"
+        return description
 
     def get_inventory_room(self): 
         ch1="Il n'y a rien ici."

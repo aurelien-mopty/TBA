@@ -6,6 +6,7 @@ from room import Room
 from player import Player
 from command import Command
 from actions import Actions
+from door import Door
 
 class Game:
 
@@ -45,6 +46,10 @@ class Game:
         self.commands["charge"] = charge
         use = Command("use", " : Utiliser le beamer pour vous téléporter dans la pièce chargée ", Actions.use, 1)
         self.commands["use"] = use
+        unlock = Command("unlock", " : Dévérouiller une porte ", Actions.unlock, 1)
+        self.commands["unlock"] = unlock
+        """open = Command("open", " : Ouvrir une porte dévérouillée ", Actions.open, 1)
+        self.commands["open"] = open"""
         
         # Setup rooms
         
@@ -72,6 +77,7 @@ class Game:
 
         Salle_a_manger = Room("Salle_a_manger ", " la salle à manger.La delicieuse odeur de poulet roti vous donnes faim . Vous remarquer un petit passage dérobé derriere le buffet.")
         self.rooms.append(Salle_a_manger)
+        Salle_a_manger.inventory_room.add_item(Item("clé", "une clé rouillée qui semble ancienne", 1))
         
         Jardin = Room("Jardin ", " le jardin. Il y'a des plantes magiques provenant des quatres coins du monde.Des domestiques gobelins taillent les haies .")
         self.rooms.append(Jardin)
@@ -101,7 +107,10 @@ class Game:
         Cabane_d_hagrid.exits = {"N" : Terrain_de_quidditch, "E" : None, "S" : None, "O" :None,"U":None,"D":None }
         Foret_interdite.exits = {"N" : None, "E" : None, "S" : None, "O" :Jardin,"U":None,"D":None}
 
-        
+        #doors
+        Hall_d_entree.doors = {"S": Door(Jardin, "S", locked=True)}
+        Jardin.doors = {"N": Door(Hall_d_entree, "N")}
+
         # Setup player and starting room
 
         self.player = Player(input("\nEntrez votre nom: "))
