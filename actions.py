@@ -260,3 +260,54 @@ class Actions:
         room.inventory_room.add_item(item)
         print(f"vous avez déposé l'objet '{item_name}' ")
         return True
+    
+    def charge(game, list_of_words, number_of_parameters):
+        player = game.player
+        l = len(list_of_words)
+        # If the number of parameters is incorrect, print an error message and return False.
+        if l != number_of_parameters + 1:
+            command_word = list_of_words[0]
+            print(MSG0.format(command_word=command_word))
+            return False
+        
+        cherche_beamer = None
+        for item in player.inventory.items.values():
+            if item.is_beamer:
+                cherche_beamer = item
+            
+        if cherche_beamer is None:
+            print("Vous ne disposez pas de la Poudre de cheminette pour charger cette pièce ! ")
+            return False
+    
+        cherche_beamer.charged_room = player.current_room
+        print(f"Vous avez chargé la Poudre de cheminette dans {player.current_room.name}")
+        return True
+         
+    def use(game, list_of_words, number_of_parameters):
+        player = game.player
+        l = len(list_of_words)
+        # If the number of parameters is incorrect, print an error message and return False.
+        if l != number_of_parameters + 1:
+            command_word = list_of_words[0]
+            print(MSG1.format(command_word=command_word))
+            return False
+        
+        item_name = list_of_words[1]
+        if item_name not in player.inventory.items:
+            print(f"Vous ne disposez pas de la {item_name} pour vous téléporter ! ")
+            return False
+        
+        item = player.inventory.items[item_name]
+
+        if not item.is_beamer:
+            print(f"L'objet '{item_name}' n'est pas un beamer.")
+            return False
+
+        if item.charged_room is None:
+            print("La Poudre de cheminette n'a été chargée avec aucune pièce !")
+            return False
+        
+        player.current_room = item.charged_room
+        print(f"Vous avez été téléporté dans la pièce : {item.charged_room.name}")
+        print(item.charged_room.get_long_description())
+        return True
