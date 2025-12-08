@@ -35,9 +35,7 @@ class Player():
         self.visited_rooms_indexs = {}
         self.past_room=[]
         self.inventory=Inventory()
-        
-        self.max_weight=1
-
+        self.max_weight=10
         
 
     

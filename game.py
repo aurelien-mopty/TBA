@@ -41,6 +41,10 @@ class Game:
         self.commands["take"] = take
         drop = Command("drop", " : Jeter un item ", Actions.drop, 1)
         self.commands["drop"] = drop
+        charge = Command("charge", " : Charger une pièce avec un beamer ", Actions.charge, 0)
+        self.commands["charge"] = charge
+        use = Command("use", " : Utiliser le beamer pour vous téléporter dans la pièce chargée ", Actions.use, 1)
+        self.commands["use"] = use
         
         # Setup rooms
         
@@ -63,7 +67,9 @@ class Game:
         
         Salle_secrete = Room("Salle_secrete ", "la salle secrete.Peu d'eleves connaissent l'existence de cette endroit, mais les habitués du lieu s'y cachent pour consommer leur poudre de mandragore ou pour acceder rapidement aux dortoirs.")
         self.rooms.append(Salle_secrete)
-        
+        Salle_secrete.inventory_room.add_item(Item("Poudre_de_cheminette","Cette substance permet de vous téléporter dans une des pièces pièce que vous connaissez",1))
+        Salle_secrete.inventory_room.items["Poudre_de_cheminette"].is_beamer = True
+
         Salle_a_manger = Room("Salle_a_manger ", " la salle à manger.La delicieuse odeur de poulet roti vous donnes faim . Vous remarquer un petit passage dérobé derriere le buffet.")
         self.rooms.append(Salle_a_manger)
         
