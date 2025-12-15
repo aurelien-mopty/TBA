@@ -1,4 +1,5 @@
 from item import Item
+from character import Character
 
 class Inventory:
 

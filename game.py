@@ -7,6 +7,7 @@ from player import Player
 from command import Command
 from actions import Actions
 from door import Door
+from character import Character
 
 class Game:
 
@@ -51,8 +52,8 @@ class Game:
         """open = Command("open", " : Ouvrir une porte dévérouillée ", Actions.open, 1)
         self.commands["open"] = open"""
         
+
         # Setup rooms
-        
 
         Hall_d_entree = Room("Hall_d_entree", "Le hall d'entrée de la fameuse école de magie Poudlard. Un elève pressé d'aller manger vous bouscule.")
         self.rooms.append(Hall_d_entree)
@@ -89,6 +90,7 @@ class Game:
         Cabane_d_hagrid = Room("Cabane_d_hagrid", "la cabane d'Hagrid.Cette maisonnette est petite mais le feu de bois vous rechauffe . Vous remarquez que le coffre d'Hagrid est ouvert")
         self.rooms.append(Cabane_d_hagrid)
         Cabane_d_hagrid.inventory_room.add_item(Item("oeuf de dragon","Attention , il va bientot éclore ",5))
+        Cabane_d_hagrid.add_character(Character("Hagrid", "Un sorcier de renomée à Poudlard",Cabane_d_hagrid, ["Vous n'auriez pas vu Harry Potter ?"]))
         
         Foret_interdite = Room("Foret_interdite", "la foret interdite. Vous entendez un loup garou au loin , mieux vaut ne pas s'impatienter ici.")
         self.rooms.append(Foret_interdite)
