@@ -57,6 +57,8 @@ class Game:
 
         Hall_d_entree = Room("Hall_d_entree", "Le hall d'entrée de la fameuse école de magie Poudlard. Un elève pressé d'aller manger vous bouscule.")
         self.rooms.append(Hall_d_entree)
+        Hall_d_entree.add_character(Character("McGonagall", "La directrice de Gryffondor",Hall_d_entree, ["Vous êtes en retard, dépêchez-vous !!"]))
+
 
         Chambre_des_secrets= Room("Chambre_des_secrets", "la chambre des secrets. Une odeur putride émmane du sol . Vous vous cachez derrière un mur pour échapper à la vision du Basilic.")
         self.rooms.append(Chambre_des_secrets)
@@ -70,6 +72,8 @@ class Game:
 
         Dortoirs = Room("Dortoirs", "les dortoirs .Une petite fée malicieuse se trouve sur votre lit , vous vous demandez comment ce petit etre vicieux à pu rentrer dans votre chambre.")
         self.rooms.append(Dortoirs)
+        Dortoirs.add_character(Character("Dobby", "Un petit elfe de maison",Dortoirs, ["Dobby a été très vilain avec Harry Potter."]))
+
         
         Salle_secrete = Room("Salle_secrete", "la salle secrete.Peu d'eleves connaissent l'existence de cette endroit, mais les habitués du lieu s'y cachent pour consommer leur poudre de mandragore ou pour acceder rapidement aux dortoirs.",True)
         self.rooms.append(Salle_secrete)
@@ -79,7 +83,8 @@ class Game:
         Salle_a_manger = Room("Salle_a_manger", " la salle à manger.La delicieuse odeur de poulet roti vous donnes faim . Vous remarquer un petit passage dérobé derriere le buffet.")
         self.rooms.append(Salle_a_manger)
         Salle_a_manger.inventory_room.add_item(Item("clé", "une clé rouillée qui semble ancienne", 1))
-        
+        Salle_a_manger.add_character(Character("Crabbe", "Un élève gourmand qui ne devrait pas ête là",Salle_a_manger, ["Tu vas finir ton cookie ?"]))
+
         Jardin = Room("Jardin", " le jardin. Il y'a des plantes magiques provenant des quatres coins du monde.Des domestiques gobelins taillent les haies .")
         self.rooms.append(Jardin)
         
