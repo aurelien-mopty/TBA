@@ -213,7 +213,18 @@ class Actions:
             print(MSG0.format(command_word=command_word))
             return False
 
-        print(player.current_room.get_inventory_room())
+
+        for item in player.inventory.items.values():
+            if item.name=="Torche":
+                player.current_room.dark=False
+        
+        if player.current_room.name=="Salle_secrete" and player.current_room.dark==False:
+            print("Grace à votre torche vous y voyez mieux")   
+
+        if player.current_room.dark is True:
+            print("Il fait trop sombre pour voir quelques chose")
+        else:
+            print(player.current_room.get_inventory_room())
 
     def take(game, list_of_words, number_of_parameters):
         player = game.player

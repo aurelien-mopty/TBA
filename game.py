@@ -70,16 +70,16 @@ class Game:
         Dortoirs = Room("Dortoirs", "les dortoirs .Une petite fée malicieuse se trouve sur votre lit , vous vous demandez comment ce petit etre vicieux à pu rentrer dans votre chambre.")
         self.rooms.append(Dortoirs)
         
-        Salle_secrete = Room("Salle_secrete ", "la salle secrete.Peu d'eleves connaissent l'existence de cette endroit, mais les habitués du lieu s'y cachent pour consommer leur poudre de mandragore ou pour acceder rapidement aux dortoirs.")
+        Salle_secrete = Room("Salle_secrete", "la salle secrete.Peu d'eleves connaissent l'existence de cette endroit, mais les habitués du lieu s'y cachent pour consommer leur poudre de mandragore ou pour acceder rapidement aux dortoirs.",True)
         self.rooms.append(Salle_secrete)
         Salle_secrete.inventory_room.add_item(Item("Poudre_de_cheminette","Cette substance permet de vous téléporter dans une des pièces pièce que vous connaissez",1))
         Salle_secrete.inventory_room.items["Poudre_de_cheminette"].is_beamer = True
 
-        Salle_a_manger = Room("Salle_a_manger ", " la salle à manger.La delicieuse odeur de poulet roti vous donnes faim . Vous remarquer un petit passage dérobé derriere le buffet.")
+        Salle_a_manger = Room("Salle_a_manger", " la salle à manger.La delicieuse odeur de poulet roti vous donnes faim . Vous remarquer un petit passage dérobé derriere le buffet.")
         self.rooms.append(Salle_a_manger)
         Salle_a_manger.inventory_room.add_item(Item("clé", "une clé rouillée qui semble ancienne", 1))
         
-        Jardin = Room("Jardin ", " le jardin. Il y'a des plantes magiques provenant des quatres coins du monde.Des domestiques gobelins taillent les haies .")
+        Jardin = Room("Jardin", " le jardin. Il y'a des plantes magiques provenant des quatres coins du monde.Des domestiques gobelins taillent les haies .")
         self.rooms.append(Jardin)
         
         Terrain_de_quidditch = Room("Terrain_de_quidditch", " sur le terrain de quidditch .L'équipe de serpentard s'entraine pour la finale de la coupe de Poudelard. Vous avez failli vous prendre la balle en pleine tete.")
@@ -90,9 +90,9 @@ class Game:
         self.rooms.append(Cabane_d_hagrid)
         Cabane_d_hagrid.inventory_room.add_item(Item("oeuf de dragon","Attention , il va bientot éclore ",5))
         
-        Foret_interdite = Room("Foret_interdite ", "la foret interdite. Vous entendez un loup garou au loin , mieux vaut ne pas s'impatienter ici.")
+        Foret_interdite = Room("Foret_interdite", "la foret interdite. Vous entendez un loup garou au loin , mieux vaut ne pas s'impatienter ici.")
         self.rooms.append(Foret_interdite)
-
+        Foret_interdite.inventory_room.add_item(Item("Torche","Cela pourrait vous guider ",2))
         # Create exits for rooms
 
         Hall_d_entree.exits = {"N" : Couloir, "E" : None, "S" : Jardin, "O" :None , "U":None,"D":None}
