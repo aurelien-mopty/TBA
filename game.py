@@ -44,7 +44,7 @@ class Game:
         self.commands["drop"] = drop
         charge = Command("charge", " : Charger une pièce avec un beamer ", Actions.charge, 0)
         self.commands["charge"] = charge
-        use = Command("use", " : Utiliser le beamer pour vous téléporter dans la pièce chargée ", Actions.use, 1)
+        use = Command("use <item>", " : Utiliser le beamer pour vous téléporter dans la pièce chargée ", Actions.use, 1)
         self.commands["use"] = use
         unlock = Command("unlock", " : Dévérouiller une porte ", Actions.unlock, 1)
         self.commands["unlock"] = unlock
@@ -108,8 +108,8 @@ class Game:
         Foret_interdite.exits = {"N" : None, "E" : None, "S" : None, "O" :Jardin,"U":None,"D":None}
 
         #doors
-        Hall_d_entree.doors = {"S": Door(Jardin, "S", locked=True)}
-        Jardin.doors = {"N": Door(Hall_d_entree, "N")}
+        Toilettes.doors = {"D": Door(Chambre_des_secrets, "D", locked=True)}
+        """Chambre_des_secrets.doors = {"U": Door(Toilettes, "U")}"""   #porte de la chambre des secrets vers les toilettes 
 
         # Setup player and starting room
 
