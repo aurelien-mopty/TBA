@@ -133,6 +133,9 @@ class Game:
         self.print_welcome()
         # Loop until the game is finished
         while not self.finished:
+            for room in self.rooms:
+                for character in list(room.characters.values()):
+                    character.move()
             # Get the command from the player
             self.process_command(input("> "))
         return None
