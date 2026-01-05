@@ -29,14 +29,14 @@ class Character:
         return False
     
     def get_msg(self):
-        if not self.msgs:
-            return"J n'ai rien à dire."
-        msg= self.msgs.pop(0)
-        self.displayed_msgs.append(msg)
+            if not self.msgs:
+                return"J n'ai rien à dire."
+            msg= self.msgs.pop(0)
+            self.displayed_msgs.append(msg)
         
 
-        if not self.msgs:
-            self.msgs = self.displayed_msgs.copy()
-            self.displayed_msgs = []
-        return msg
+            if not self.msgs:
+                self.msgs = self.displayed_msgs.copy()
+                self.displayed_msgs = []
+            return msg
 

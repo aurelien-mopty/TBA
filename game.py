@@ -8,7 +8,7 @@ from command import Command
 from actions import Actions
 from door import Door
 from character import Character
-DEBUG=True
+DEBUG=False
 class Game:
 
     # Constructor
