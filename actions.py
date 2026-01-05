@@ -359,28 +359,22 @@ class Actions:
         print(f"Vous avez déverrouillé la porte vers le {direction} avec la clé.")
         return True
 
-    """def open_door(game, list_of_words, number_of_parameters):
+    def talk(game, list_of_words, number_of_parameters):
         player = game.player
         l = len(list_of_words)
+        # If the number of parameters is incorrect, print an error message and return False.
         if l != number_of_parameters + 1:
             command_word = list_of_words[0]
             print(MSG1.format(command_word=command_word))
             return False
+        
+        character_name= list_of_words[1]
 
-        direction = list_of_words[1].upper()
-
-        if direction not in player.current_room.doors:
-            print(f"Il n'y a pas de porte dans la direction {direction}.")
+        if character_name not in player.current_room.characters:
+            print(f"Le personnage {character_name} n'est pas ici.")
             return False
+        character = player.current_room.characters[character_name]
+        msg = character.get_msg()
+        print(f"{character_name} : {msg}") 
 
-        door = player.current_room.doors[direction]
-
-        if door.locked:
-            print(f"La porte vers le {direction} est verrouillée.")
-            return False
-
-        player.current_room = door.room
-        print(f"Vous avez ouvert la porte vers le {direction}.")
-        print(player.current_room.get_long_description())
-        return True"""
-            
+        return True

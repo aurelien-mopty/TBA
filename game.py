@@ -52,8 +52,8 @@ class Game:
         self.commands["use"] = use
         unlock = Command("unlock", " : Dévérouiller une porte ", Actions.unlock, 1)
         self.commands["unlock"] = unlock
-        """open = Command("open", " : Ouvrir une porte dévérouillée ", Actions.open, 1)
-        self.commands["open"] = open"""
+        talk = Command("talk <someone>", " : Intéragir avec un PNJ ", Actions.talk, 1)
+        self.commands["talk"] = talk
         
 
         # Setup rooms
@@ -72,7 +72,7 @@ class Game:
        
         Couloir = Room("Couloir", "le couloir . Un surveillant vous presse pour que vous ne restiez pas oisif dans le couloir. Il est à peine 13h mais étant fatigué vous avez envie monté aux dortoirs pour faire une sieste.")
         self.rooms.append(Couloir)
-        Couloir.add_character(Character("Mimi Geignarde", "Un fantome qui se balade dans poudlard ",Couloir, ["Tu es nouveau toi?"]))
+        Couloir.add_character(Character("Mimi_Geignarde", "Un fantome qui se balade dans poudlard ",Couloir, ["Tu es nouveau toi?"]))
 
 
         Dortoirs = Room("Dortoirs", "les dortoirs .Une petite fée malicieuse se trouve sur votre lit , vous vous demandez comment ce petit etre vicieux à pu rentrer dans votre chambre.")
@@ -140,7 +140,7 @@ class Game:
         while not self.finished:
             for room in self.rooms:
                 for character in list(room.characters.values()):
-                    if character.name=="Mimi Geignarde":
+                    if character.name=="Mimi_Geignarde":
                         character.move()
                         if DEBUG:
                             print(" message debug, position de mimi:")

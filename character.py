@@ -4,8 +4,8 @@ class Character:
         self.name = name 
         self.description = description  
         self.current_room = current_room 
-        self.msgs = []
-
+        self.msgs = msgs.copy()
+        self.displayed_msgs = []
 
     def __str__(self):
         return  f"{self.name} : {self.description}"
@@ -26,3 +26,15 @@ class Character:
                 self.current_room.add_character(self)
                 return True
         return False
+    
+    def get_msg(self):
+        if not self.msgs:
+            return"J n'ai rien à dire."
+        msg= self.msgs.pop(0)
+        self.displayed_msgs.append(msg)
+
+        if not self.msgs:
+            self.msgs = self.displayed_msgs.copy()
+            self.displayed_msgs = []
+        return msg
+
