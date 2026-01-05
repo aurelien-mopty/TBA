@@ -1,4 +1,5 @@
 import random
+
 class Character:
     def __init__(self, name,description, current_room, msgs):
         self.name = name 
@@ -32,6 +33,7 @@ class Character:
             return"J n'ai rien à dire."
         msg= self.msgs.pop(0)
         self.displayed_msgs.append(msg)
+        
 
         if not self.msgs:
             self.msgs = self.displayed_msgs.copy()
