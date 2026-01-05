@@ -8,7 +8,7 @@ from command import Command
 from actions import Actions
 from door import Door
 from character import Character
-
+DEBUG=False
 class Game:
 
     # Constructor
@@ -19,8 +19,11 @@ class Game:
         self.player = None
         self.valid_directions = set()
         
+        
     
     # Setup the game
+
+    
     def setup(self):
 
         # Setup commands
@@ -69,6 +72,8 @@ class Game:
        
         Couloir = Room("Couloir", "le couloir . Un surveillant vous presse pour que vous ne restiez pas oisif dans le couloir. Il est à peine 13h mais étant fatigué vous avez envie monté aux dortoirs pour faire une sieste.")
         self.rooms.append(Couloir)
+        Couloir.add_character(Character("Mimi Geignarde", "Un fantome qui se balade dans poudlard ",Couloir, ["Tu es nouveau toi?"]))
+
 
         Dortoirs = Room("Dortoirs", "les dortoirs .Une petite fée malicieuse se trouve sur votre lit , vous vous demandez comment ce petit etre vicieux à pu rentrer dans votre chambre.")
         self.rooms.append(Dortoirs)
@@ -135,7 +140,11 @@ class Game:
         while not self.finished:
             for room in self.rooms:
                 for character in list(room.characters.values()):
-                    character.move()
+                    if character.name=="Mimi Geignarde":
+                        character.move()
+                        if DEBUG:
+                            print(" message debug, position de mimi:")
+                            print(character.current_room.name)
             # Get the command from the player
             self.process_command(input("> "))
         return None

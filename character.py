@@ -14,10 +14,10 @@ class Character:
         if random.choice([True, False]):
             exits = []
             for direction, room in self.current_room.exits.items():
-                if room is not None:
+                if room is not None and room.name != "Chambre_des_secrets":
                     exits.append((direction, room))
             for direction, door in self.current_room.doors.items():
-                if not door.locked:
+                if not door.locked and door.room.name !="Chambre_des_secrets" :
                     exits.append((direction, door.room))
             if exits:
                 direction, next_room = random.choice(exits)
