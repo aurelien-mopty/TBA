@@ -8,7 +8,7 @@ from command import Command
 from actions import Actions
 from door import Door
 from character import Character
-DEBUG=False
+DEBUG=True
 class Game:
 
     # Constructor
@@ -134,10 +134,40 @@ class Game:
 
     # Play the game
     def play(self):
+        if DEBUG:
+            print("DEBUG: Début de la partie.")
+
         self.setup()
+        self.print_welcome()
+
+        while not self.finished:
+            # Obtenir la commande du joueur
+            command_input = input("> ")
+            list_of_words = command_input.split(" ")
+            command_word = list_of_words[0]
+
+            # Exécuter la commande
+            if command_word in self.commands.keys():
+                command = self.commands[command_word]
+                command.action(self, list_of_words, command.number_of_parameters)
+
+                # Déplacer les PNJ uniquement si la commande est 'go'
+                if command_word == "go":
+                    for room in self.rooms:
+                        for character in list(room.characters.values()):
+                            if character.name == "Mimi_Geignarde":
+                                if DEBUG:
+                                    print(" message debug, position de mimi:")
+                                    print(character.current_room.name)
+                                character.move()
+        return None
+
+    #autre version du play(self)
+        """self.setup()
         self.print_welcome()
         # Loop until the game is finished
         while not self.finished:
+            self.process_command(input("> "))
             for room in self.rooms:
                 for character in list(room.characters.values()):
                     if character.name=="Mimi_Geignarde":
@@ -146,8 +176,7 @@ class Game:
                             print(" message debug, position de mimi:")
                             print(character.current_room.name)
             # Get the command from the player
-            self.process_command(input("> "))
-        return None
+        return None"""
 
     # Process the command entered by the player
     def process_command(self, command_string) -> None:
