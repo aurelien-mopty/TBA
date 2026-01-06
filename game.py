@@ -77,7 +77,7 @@ class Game:
 
         Dortoirs = Room("Dortoirs", "les dortoirs .Une petite fée malicieuse se trouve sur votre lit , vous vous demandez comment ce petit etre vicieux à pu rentrer dans votre chambre.")
         self.rooms.append(Dortoirs)
-        Dortoirs.add_character(Character("Dobby", "Un petit elfe de maison",Dortoirs, ["Dobby a été très vilain avec Harry Potter."]))
+        Dortoirs.add_character(Character("Dobby", "Un petit elfe de maison",Dortoirs, ["Dobby a été très vilain avec Harry Potter."],  required_items=["baguette"]))
 
         
         Salle_secrete = Room("Salle_secrete", "la salle secrete.Peu d'eleves connaissent l'existence de cette endroit, mais les habitués du lieu s'y cachent pour consommer leur poudre de mandragore ou pour acceder rapidement aux dortoirs.",True)
