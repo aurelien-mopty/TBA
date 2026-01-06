@@ -374,7 +374,7 @@ class Actions:
             print(f"Le personnage {character_name} n'est pas ici.")
             return False
         character = player.current_room.characters[character_name]
-        msg = character.get_msg()
+        msg = character.get_msg(player)
         print(f"{character_name} : {msg}") 
 
         return True
