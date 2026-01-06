@@ -1,5 +1,4 @@
 import random
-from player import Player
 
 class Character:
     def __init__(self, name,description, current_room, msgs, required_items=None):
@@ -30,7 +29,12 @@ class Character:
                 return True
         return False
     
-    def get_msg(self):
+    def get_msg(self, player=None):
+            if player is not None and self.required_items:
+                has_required_items = any(any(item.name == required_item for required_item in self.required_items) for item in player.inventory.items.values())
+                if not has_required_items:
+                    return f"Je ne parlerai qu'à quelqu'un qui possède l'un des objets suivants : {', '.join(self.required_items)}."
+
             if not self.msgs:
                 return"J n'ai rien à dire."
             msg= self.msgs.pop(0)
