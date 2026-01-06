@@ -1,4 +1,5 @@
 import random
+from player import Player
 
 class Character:
     def __init__(self, name,description, current_room, msgs):
@@ -7,6 +8,7 @@ class Character:
         self.current_room = current_room 
         self.msgs = msgs.copy()
         self.displayed_msgs = []
+        
 
     def __str__(self):
         return  f"{self.name} : {self.description}"
@@ -29,14 +31,12 @@ class Character:
         return False
     
     def get_msg(self):
-            if not self.msgs:
-                return"J n'ai rien à dire."
-            msg= self.msgs.pop(0)
-            self.displayed_msgs.append(msg)
-        
-
-            if not self.msgs:
-                self.msgs = self.displayed_msgs.copy()
-                self.displayed_msgs = []
-            return msg
+        if not self.msgs:
+            return"J n'ai rien à dire."
+        msg= self.msgs.pop(0)
+        self.displayed_msgs.append(msg)
+        if not self.msgs:
+            self.msgs = self.displayed_msgs.copy()
+            self.displayed_msgs = []
+        return msg
 
