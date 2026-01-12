@@ -17,7 +17,7 @@ MSG0 = "\nLa commande '{command_word}' ne prend pas de paramètre.\n"
 MSG1 = "\nLa commande '{command_word}' prend 1 seul paramètre.\n"
 
 class Actions:
-    
+
     @staticmethod
     def go(game, list_of_words, number_of_parameters):
         """
@@ -389,7 +389,7 @@ class Actions:
 
         return True
     
-        @staticmethod
+    @staticmethod
     def quests(game, list_of_words, number_of_parameters):
         """
         Show all quests and their status.
