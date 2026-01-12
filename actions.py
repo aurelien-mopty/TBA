@@ -16,6 +16,7 @@ MSG0 = "\nLa commande '{command_word}' ne prend pas de paramètre.\n"
 # The MSG1 variable is used when the command takes 1 parameter.
 MSG1 = "\nLa commande '{command_word}' prend 1 seul paramètre.\n"
 
+@staticmethod
 class Actions:
 
     def go(game, list_of_words, number_of_parameters):
@@ -74,6 +75,7 @@ class Actions:
         player.move(direction)
         return True
 
+    @staticmethod
     def quit(game, list_of_words, number_of_parameters):
         """
         Quit the game.
@@ -113,6 +115,7 @@ class Actions:
         game.finished = True
         return True
 
+    @staticmethod
     def help(game, list_of_words, number_of_parameters):
         """
         Print the list of available commands.
@@ -153,6 +156,7 @@ class Actions:
         print()
         return True
 
+    @staticmethod
     def history(game, list_of_words, number_of_parameters):
         player = game.player
         l = len(list_of_words)
@@ -164,6 +168,7 @@ class Actions:
         
         print(player.get_history())
 
+    @staticmethod
     def back(game, list_of_words, number_of_parameters):
         player = game.player
         l = len(list_of_words)
@@ -191,8 +196,7 @@ class Actions:
             print(player.current_room.get_long_description())
             print(player.get_history())
 
-            
-        
+    @staticmethod      
     def check(game, list_of_words, number_of_parameters):
         player = game.player
         l = len(list_of_words)
@@ -204,6 +208,7 @@ class Actions:
         
         print(player.get_inventory_player())
 
+    @staticmethod
     def look(game, list_of_words, number_of_parameters):
         player = game.player
         l = len(list_of_words)
@@ -226,6 +231,7 @@ class Actions:
         else:
             print(player.current_room.get_inventory_room())
 
+    @staticmethod
     def take(game, list_of_words, number_of_parameters):
         player = game.player
         l = len(list_of_words)
@@ -252,7 +258,8 @@ class Actions:
         print(f"Vous avez pris l'objet '{item_name}' ")
         
         return True
-    
+
+    @staticmethod 
     def drop(game, list_of_words, number_of_parameters):
         player = game.player
         l = len(list_of_words)
@@ -272,6 +279,7 @@ class Actions:
         print(f"vous avez déposé l'objet '{item_name}' ")
         return True
     
+    @staticmethod
     def charge(game, list_of_words, number_of_parameters):
         player = game.player
         l = len(list_of_words)
@@ -293,7 +301,8 @@ class Actions:
         cherche_beamer.charged_room = player.current_room
         print(f"Vous avez chargé la Poudre de cheminette dans {player.current_room.name}")
         return True
-         
+
+    @staticmethod 
     def use(game, list_of_words, number_of_parameters):
         player = game.player
         l = len(list_of_words)
@@ -323,7 +332,7 @@ class Actions:
         print(item.charged_room.get_long_description())
         return True
 
-
+    @staticmethod
     def unlock(game, list_of_words, number_of_parameters):
         player = game.player
         l = len(list_of_words)
@@ -359,6 +368,7 @@ class Actions:
         print(f"Vous avez déverrouillé la porte vers le {direction} avec la clé.")
         return True
 
+    @staticmethod
     def talk(game, list_of_words, number_of_parameters):
         player = game.player
         l = len(list_of_words)
