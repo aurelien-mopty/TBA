@@ -191,30 +191,24 @@ class Game:
     def _setup_quests(self):
         """Initialize all quests."""
         exploration_quest = Quest(
-            title="Grand Explorateur",
-            description="Explorez tous les lieux de ce monde mystérieux.",
-            objectives=["Visiter Forest"
-                        , "Visiter Tower"
-                        , "Visiter Cave"
-                        , "Visiter Cottage"
-                        , "Visiter Castle"],
-            reward="Titre de Grand Explorateur"
+            title="EXplorateur de Poudlard",
+            description="Atteindre la chambre des secrets.",
+            objectives=["Visiter Chambre des Secrets"],
+            reward="Titre d'explorateur de Poudlard"
         )
 
-        travel_quest = Quest(
-            title="Grand Voyageur",
-            description="Déplacez-vous 10 fois entre les lieux.",
-            objectives=["Se déplacer 10 fois"],
-            reward="Bottes de voyageur"
+        item_quest = Quest(
+            title="Petit collectionneur",
+            description="Obtenir les 6 objets",
+            objectives=["Obtenir balai", "Obtenir Oeuf de Dragon","Obtenir Mandragore","Obtenir Baguette","Obtenir Torche","Dent de Basilic"],
+            reward="Titre de petit collectionneur"
         )
 
-        discovery_quest = Quest(
-            title="Découvreur de Secrets",
-            description="Découvrez les trois lieux les plus mystérieux.",
-            objectives=["Visiter Cave"
-                        , "Visiter Tower"
-                        , "Visiter Castle"],
-            reward="Clé dorée"
+        meet_quest = Quest(
+            title="Bavardeur magique",
+            description="Interagir avec Dobby",
+            objectives=["Parler avec Dobby"],
+            reward="Titre de Bavardeur magique"
         )
 
         # Add quests to player's quest manager
