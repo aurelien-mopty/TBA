@@ -33,7 +33,7 @@ class Character:
             if player is not None and self.required_items:
                 has_required_items = any(any(item.name == required_item for required_item in self.required_items) for item in player.inventory.items.values())
                 if not has_required_items:
-                    return f"Sera tu assez valeureux pour trouver la baguette , si tu y arrives je te donnerais un indice. Voici un objet qui pourrait t'etre utile : {', '.join(self.required_items)}."
+                    return f"Sera tu assez valeureux pour trouver la baguette , si tu y arrives je te donnerais un indice."
 
             if not self.msgs:
                 return"J n'ai rien à dire."

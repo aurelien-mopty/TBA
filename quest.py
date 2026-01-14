@@ -136,6 +136,7 @@ class Quest:
                         new_weight = current_weight + self.reward.weight
                         if new_weight <= player.max_weight:
                             player.inventory.add_item(self.reward)
+                            print(f"Voici un objet qui pourrait être utile :")
                             print(f"L'objet {self.reward.name} a été ajouté à votre inventaire.")
                         else:
                             player.current_room.inventory_room.add_item(self.reward)
@@ -542,6 +543,14 @@ class QuestManager:
             quest.check_room_objective(room_name, self.player)
             if quest.is_completed:
                 self.active_quests.remove(quest)
+
+    def check_item_objectives(self):
+        for quest in self.active_quests:
+            for objective in quest.objectives:
+                if objective.startswith("Obtenir "):
+                    item_name = objective.replace("Obtenir ", "")
+                    if any(item.name == item_name for item in self.player.inventory.items.values()):
+                        quest.complete_objective(objective, self.player)
 
 
     def check_action_objectives(self, action, target=None):

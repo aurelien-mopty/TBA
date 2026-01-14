@@ -257,6 +257,8 @@ class Actions:
         room.inventory_room.remove_item(item_name)
         print(f"Vous avez pris l'objet '{item_name}' ")
         
+        game.player.quest_manager.check_item_objectives()
+        
         return True
 
     @staticmethod 

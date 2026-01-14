@@ -202,7 +202,7 @@ class Game:
 
         item_quest = Quest(
             title="Petit collectionneur",
-            description="Obtenir les 6 objets",
+            description="Obtenir les 6 objets magiques.",
             objectives=["Obtenir balai", "Obtenir Oeuf de Dragon","Obtenir Mandragore","Obtenir Baguette","Obtenir Torche","Dent de Basilic"],
             reward="Titre de petit collectionneur"
         )
@@ -258,6 +258,8 @@ class Game:
                                     print(" message debug, position de mimi:")
                                     print(character.current_room.name)
                                 character.move()
+
+                self.player.quest_manager.check_item_objectives()
 
             if self.win():
                 print("\n🎉 Félicitations ! Vous avez complété toutes les quêtes et gagné la partie !\n")
