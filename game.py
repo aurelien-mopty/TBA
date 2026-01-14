@@ -203,7 +203,7 @@ class Game:
         item_quest = Quest(
             title="Petit collectionneur",
             description="Obtenir les 6 objets magiques.",
-            objectives=["Obtenir balai", "Obtenir Oeuf de Dragon","Obtenir Mandragore","Obtenir Baguette","Obtenir Torche","Dent de Basilic"],
+            objectives=["Obtenir balai", "Obtenir Oeuf_de_dragon","Obtenir Mandragore","Obtenir baguette","Obtenir Torche","Obtenir Dent_de_Basilic"],
             reward="Titre de petit collectionneur"
         )
 
@@ -226,8 +226,16 @@ class Game:
     def lose(self):
         if self.player.current_room.name == "Grotte":
             required_items = ["baguette", "Mandragore", "Oeuf_de_dragon", "Torche", "balai"]
-            has_required_items = all(any(item.name == required_item for required_item in required_items) for item in self.player.inventory.items.values())
-            return not has_required_items
+            inventory_items = [item.name for item in self.player.inventory.items.values()]
+            #print("\nObjets dans votre inventaire :")
+            #for item in inventory_items:
+                #print(f"- {item}")
+
+
+            has_required_items = all(item in inventory_items for item in required_items)
+            if not has_required_items:
+                print("\n❌ Vous avez perdu la partie ! Vous n'aviez pas les objets nécessaires pour vaincre le Basilic.\n")
+                return True
         return False
     
     # Play the game
@@ -266,7 +274,6 @@ class Game:
                 self.finished = True
 
             if self.lose():
-                print("\n❌ Vous avez perdu la partie ! Vous n'aviez pas les obejts nécessaires pour vaincre le Basilic.\n")
                 self.finished = True
    
     # Process the command entered by the player

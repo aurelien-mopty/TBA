@@ -56,7 +56,7 @@ class Player():
         self.visited_rooms_indexs = {}
         self.past_room=[]
         self.inventory=Inventory()
-        self.max_weight=10
+        self.max_weight=50
         self.move_count = 0
         self.quest_manager = QuestManager(self)
         self.rewards = []  # List to store earned rewards
