@@ -268,6 +268,7 @@ class Game:
                                 character.move()
 
                 self.player.quest_manager.check_item_objectives()
+        
 
             if self.win():
                 print("\n🎉 Félicitations ! Vous avez complété toutes les quêtes et gagné la partie !\n")

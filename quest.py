@@ -291,7 +291,7 @@ class Quest:
                 return True
         return False
 
-
+    
     def check_action_objective(self, action, target=None, player=None):
         """
         Check if performing an action completes an objective.
@@ -367,6 +367,7 @@ class Quest:
                             self.complete_objective(objective, player)
                             return True
         return False
+
 
 
     def __str__(self):
@@ -621,7 +622,7 @@ class QuestManager:
             if quest.is_completed:
                 self.active_quests.remove(quest)
 
-
+        
     def get_active_quests(self):
         """
         Get all active quests.

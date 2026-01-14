@@ -137,6 +137,15 @@ class Player():
         # Check room visit objectives
         self.quest_manager.check_room_objectives(self.current_room.name)
 
+
+    
+        if self.current_room.name == "Chambre_des_Secrets":
+            for quest in self.quest_manager.active_quests:
+                if quest.title=="Explorateur de Poudlard":
+                    quest.complete_objective("Visiter Chambre des Secrets", self)
+                    
+
+
         # Increment move counter and check movement objectives
         self.move_count += 1
         self.quest_manager.check_counter_objectives("Se déplacer", self.move_count)
