@@ -1,5 +1,8 @@
-# Define the Player class.
+"""Define the Player class."""
+
 from inventory import Inventory
+from quest import QuestManager
+
 class Player():
     """
     Représente un joueur dans le jeu d'aventure.
@@ -27,8 +30,25 @@ class Player():
         \\nAucune porte dans cette direction !\\n
         False
     """
-    # Define the constructor.
+
+
     def __init__(self, name):
+        """
+        Initialize a new player.
+        
+        Args:
+            name (str): The name of the player.
+            
+        Examples:
+        
+        >>> player = Player("Alice")
+        >>> player.name
+        'Alice'
+        >>> player.move_count
+        0
+        >>> player.rewards
+        []
+        """
         self.name = name
         self.current_room = None
         self.history=[]
@@ -36,16 +56,61 @@ class Player():
         self.past_room=[]
         self.inventory=Inventory()
         self.max_weight=10
-        
+        self.move_count = 0
+        self.quest_manager = QuestManager(self)
+        self.rewards = []  # List to store earned rewards
+      # Define the move method.
 
-    
-    # Define the move method.
+
     def move(self, direction):
+        """
+        Move the player in the specified direction.
+        
+        Args:
+            direction (str): The direction to move (N, E, S, O).
+            
+        Returns:
+            bool: True if the move was successful, False otherwise.
+            
+        Examples:
+        
+        >>> from room import Room
+        >>> player = Player("Dave")
+        >>> room1 = Room("Room1", "in room 1")
+        >>> room2 = Room("Room2", "in room 2")
+        >>> room3 = Room("Room3", "in room 3")
+        >>> room1.exits = {"N": room2, "E": None, "S": None, "O": None}
+        >>> room2.exits = {"S": room1, "E": room3, "S": None, "O": None}
+        >>> player.current_room = room1
+        >>> player.move_count
+        0
+        >>> player.move("N")
+        <BLANKLINE>
+        Vous êtes in room 2
+        <BLANKLINE>
+        Sorties: E
+        <BLANKLINE>
+        True
+        >>> player.move_count
+        1
+        >>> player.current_room.name
+        'Room2'
+        >>> player.move("E")
+        <BLANKLINE>
+        Vous êtes in room 3
+        <BLANKLINE>
+        Sorties:
+        <BLANKLINE>
+        True
+        >>> player.move_count
+        2
+        """
         # Get the next room from the exits dictionary of the current room.
         if direction in self.current_room.doors and self.current_room.doors[direction].locked:
             print(f"\nLa porte vers le {direction} est verrouillée. Vous devez la déverrouiller d'abord.\n")
             return False
         
+        # Get the next room from the exits dictionary of the current room.
         next_room = self.current_room.exits[direction]
 
         # If the next room is None, print an error message and return False.
@@ -63,14 +128,20 @@ class Player():
             self.visited_rooms_indexs[self.current_room.name]+=1
         
         # Set the current room to the next room.
-
         self.current_room = next_room
         print(self.current_room.get_long_description())
-       
-        
+
         print(self.get_history())
+
+        # Check room visit objectives
+        self.quest_manager.check_room_objectives(self.current_room.name)
+
+        # Increment move counter and check movement objectives
+        self.move_count += 1
+        self.quest_manager.check_counter_objectives("Se déplacer", self.move_count)
+
         return True
-    
+
     def can_back(self):#Verifie si la liste history  est vide , si oui
         return self.history!=[]
     
@@ -85,6 +156,57 @@ class Player():
         ch1="Votre inventaire est vide."
         ch2="Vous disposez des items suivants :\n"
         return self.inventory.get_inventory(ch1,ch2)
-         
+
+    def add_reward(self, reward):
+        """
+        Add a reward to the player's rewards list.
+        
+        Args:
+            reward (str): The reward to add.
+            
+        Examples:
+        
+        >>> player = Player("Bob")
+        >>> player.add_reward("Épée magique") # doctest: +NORMALIZE_WHITESPACE
+        <BLANKLINE>
+        🎁 Vous avez obtenu: Épée magique
+        <BLANKLINE>
+        >>> "Épée magique" in player.rewards
+        True
+        >>> player.add_reward("Épée magique") # Adding same reward again
+        >>> len(player.rewards)
+        1
+        """
+        if reward and reward not in self.rewards:
+            self.rewards.append(reward)
+            print(f"\n🎁 Vous avez obtenu: {reward}\n")
 
 
+    def show_rewards(self):
+        """
+        Display all rewards earned by the player.
+        
+        Examples:
+        
+        >>> player = Player("Charlie")
+        >>> player.show_rewards() # doctest: +NORMALIZE_WHITESPACE
+        <BLANKLINE>
+        🎁 Aucune récompense obtenue pour le moment.
+        <BLANKLINE>
+        >>> player.add_reward("Bouclier d'or") # doctest: +NORMALIZE_WHITESPACE
+        <BLANKLINE>
+        🎁 Vous avez obtenu: Bouclier d'or
+        <BLANKLINE>
+        >>> player.show_rewards() # doctest: +NORMALIZE_WHITESPACE
+        <BLANKLINE>
+        🎁 Vos récompenses:
+        • Bouclier d'or
+        <BLANKLINE>
+        """
+        if not self.rewards:
+            print("\n🎁 Aucune récompense obtenue pour le moment.\n")
+        else:
+            print("\n🎁 Vos récompenses:")
+            for reward in self.rewards:
+                print(f"  • {reward}")
+            print()
