@@ -139,7 +139,7 @@ class Game:
         Salle_a_manger.add_character(Character("Crabbe", "Un élève gourmand qui ne devrait pas ête là",Salle_a_manger, ["Tu vas finir ton cookie ?"]))
 
         Jardin = Room("Jardin", " le jardin. Il y'a des plantes magiques provenant des quatres coins du monde.Des domestiques gobelins taillent les haies .")
-        Jardin.inventory_room.add_item(Item("Mandragore","Cette racine pousse un cri strident , bouchez vous les oreilles",2)
+        Jardin.inventory_room.add_item(Item("Mandragore","Cette racine pousse un cri strident , bouchez vous les oreilles",2))
         
         Terrain_de_quidditch = Room("Terrain_de_quidditch", " sur le terrain de quidditch .L'équipe de serpentard s'entraine pour la finale de la coupe de Poudelard. Vous avez failli vous prendre la balle en pleine tete.")
         Terrain_de_quidditch.inventory_room.add_item(Item("balai","Ce balai vous permet de vous envoler dans les cieux",3))
