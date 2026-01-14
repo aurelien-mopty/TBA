@@ -111,7 +111,7 @@ class Game:
         Hall_d_entree.add_character(Character("McGonagall", "La directrice de Gryffondor",Hall_d_entree, ["Vous êtes en retard, dépêchez-vous !!"]))
 
 
-        Chambre_des_secrets= Room("Chambre_des_secrets", "la chambre des secrets. Une odeur putride émmane du sol . Vous vous cachez derrière un mur pour échapper à la vision du Basilic.")
+        Grotte= Room("Grotte", "Une grotte etrange. Il fait très sombre. .")
 
 
         Toilettes = Room("Toilettes", "les toilettes .Vous remarquez qu'une odeur se dégage des escaliers menant vers une pièce sombre.")
@@ -139,7 +139,7 @@ class Game:
         Salle_a_manger.add_character(Character("Crabbe", "Un élève gourmand qui ne devrait pas ête là",Salle_a_manger, ["Tu vas finir ton cookie ?"]))
 
         Jardin = Room("Jardin", " le jardin. Il y'a des plantes magiques provenant des quatres coins du monde.Des domestiques gobelins taillent les haies .")
-
+        Jardin.inventory_room.add_item(Item("Mandragore","Cette racine pousse un cri strident , bouchez vous les oreilles",2)
         
         Terrain_de_quidditch = Room("Terrain_de_quidditch", " sur le terrain de quidditch .L'équipe de serpentard s'entraine pour la finale de la coupe de Poudelard. Vous avez failli vous prendre la balle en pleine tete.")
         Terrain_de_quidditch.inventory_room.add_item(Item("balai","Ce balai vous permet de vous envoler dans les cieux",3))
@@ -150,13 +150,14 @@ class Game:
         
         Foret_interdite = Room("Foret_interdite", "la foret interdite. Vous entendez un loup garou au loin , mieux vaut ne pas s'impatienter ici.")
         Foret_interdite.inventory_room.add_item(Item("Torche","Cela pourrait vous guider ",2))
+        Chambre_des_Secrets=Room("Chambre_des_Secrets","la chambre des secrets. Une odeur putride émane du sol.")
         
-        for room in [Hall_d_entree,Chambre_des_secrets,Toilettes,Couloir,Dortoirs,Salle_secrete,Salle_a_manger,Jardin,Terrain_de_quidditch,Cabane_d_hagrid,Foret_interdite]:
-            self.room.append(room)
+        for room in [Hall_d_entree,Grotte,Toilettes,Couloir,Dortoirs,Salle_secrete,Salle_a_manger,Jardin,Terrain_de_quidditch,Cabane_d_hagrid,Foret_interdite,Chambre_des_Secrets]:
+            self.rooms.append(room)
 
         Hall_d_entree.exits = {"N" : Couloir, "E" : None, "S" : Jardin, "O" :None , "U":None,"D":None}
-        Chambre_des_secrets.exits = {"N" : None, "E" : None, "S" : None, "O" : None,"U":None,"D":None}
-        Toilettes.exits = {"N" : None, "E" : Couloir, "S" : None, "O" : None ,"U":None,"D":Chambre_des_secrets}
+        Grotte.exits = {"N" : None, "E" : None, "S" : None, "O" : Chambre_des_Secrets,"U":None,"D":None}
+        Toilettes.exits = {"N" : None, "E" : Couloir, "S" : None, "O" : None ,"U":None,"D":Grotte}
         Couloir.exits = {"N" : Salle_a_manger, "E" :None, "S" : Hall_d_entree, "O" : Toilettes,"U":Dortoirs,"D":None}
         Dortoirs.exits = {"N" : None, "E" : None, "S" : None, "O" :None,"U":None,"D":Couloir}
         Salle_secrete.exits = {"N" : None, "E" : None, "S" : Dortoirs, "O" : None,"U":None,"D":None}
@@ -165,9 +166,9 @@ class Game:
         Terrain_de_quidditch.exits = {"N" : None, "E" : Jardin, "S" : Cabane_d_hagrid, "O" :None,"U":None,"D":None }
         Cabane_d_hagrid.exits = {"N" : Terrain_de_quidditch, "E" : None, "S" : None, "O" :None,"U":None,"D":None }
         Foret_interdite.exits = {"N" : None, "E" : None, "S" : None, "O" :Jardin,"U":None,"D":None}
-
-        Toilettes.doors = {"D": Door(Chambre_des_secrets, "D", locked=True)}
-        """Chambre_des_secrets.doors = {"U": Door(Toilettes, "U")}"""#porte de la chambre des secrets vers les toilettes    
+        Chambre_des_Secrets.exits= {"N" : None, "E" : None, "S" : None, "O" : None,"U":None,"D":None}
+        Toilettes.doors = {"D": Door(Grotte, "D", locked=True)}
+        """Grotte.doors = {"U": Door(Toilettes, "U")}"""#porte de la chambre des secrets vers les toilettes    
 
        
 
