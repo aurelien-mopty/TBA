@@ -191,7 +191,7 @@ class Game:
     def _setup_quests(self):
         """Initialize all quests."""
         exploration_quest = Quest(
-            title="EXplorateur de Poudlard",
+            title="Explorateur de Poudlard",
             description="Atteindre la chambre des secrets.",
             objectives=["Visiter Chambre des Secrets"],
             reward="Titre d'explorateur de Poudlard"
@@ -213,8 +213,8 @@ class Game:
 
         # Add quests to player's quest manager
         self.player.quest_manager.add_quest(exploration_quest)
-        self.player.quest_manager.add_quest(travel_quest)
-        self.player.quest_manager.add_quest(discovery_quest)
+        self.player.quest_manager.add_quest(item_quest)
+        self.player.quest_manager.add_quest(meet_quest)
 
     def win(self):
         return all(quest.is_completed for quest in self.player.quest_manager.quests)
