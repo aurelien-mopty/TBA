@@ -116,7 +116,7 @@ class Game:
 
         Toilettes = Room("Toilettes", "les toilettes .Vous remarquez qu'une odeur se dégage des escaliers menant vers une pièce sombre.")
 
-        Toilettes.inventory_room.add_item(Item("baguette","Cette baguette vous permet de lancer des sorts ",2))
+        Toilettes.inventory_room.add_item(Item("bijoux oublié ","Il semble que quelqu'un a perdu son bijoux",8))
        
         Couloir = Room("Couloir", "le couloir . Un surveillant vous presse pour que vous ne restiez pas oisif dans le couloir. Il est à peine 13h mais étant fatigué vous avez envie monté aux dortoirs pour faire une sieste.")
 
@@ -125,13 +125,13 @@ class Game:
 
         Dortoirs = Room("Dortoirs", "les dortoirs .Une petite fée malicieuse se trouve sur votre lit , vous vous demandez comment ce petit etre vicieux à pu rentrer dans votre chambre.")
 
-        Dortoirs.add_character(Character("Dobby", "Un petit elfe de maison",Dortoirs, ["Dobby a été très vilain avec Harry Potter."],  required_items=["baguette"]))
+        Dortoirs.add_character(Character("Dobby", "Un petit elfe de maison",Dortoirs, ["Vous etes brave jeune sorcier . Voici mon indice: si vous voulez passer par la grotte vous aurez besoin de cinq objets magique pour survivre."],  required_items=["baguette"]))
 
         
         Salle_secrete = Room("Salle_secrete", "la salle secrete.Peu d'eleves connaissent l'existence de cette endroit, mais les habitués du lieu s'y cachent pour consommer leur poudre de mandragore ou pour acceder rapidement aux dortoirs.",True)
 
-        Salle_secrete.inventory_room.add_item(Item("Poudre_de_cheminette","Cette substance permet de vous téléporter dans une des pièces pièce que vous connaissez",1))
-        Salle_secrete.inventory_room.items["Poudre_de_cheminette"].is_beamer = True
+        Salle_secrete.inventory_room.add_item(Item("baguette","Cette baguette vous permet de lancer des sorts",2))
+        
 
         Salle_a_manger = Room("Salle_a_manger", " la salle à manger.La delicieuse odeur de poulet roti vous donnes faim . Vous remarquer un petit passage dérobé derriere le buffet.")
 
@@ -149,6 +149,8 @@ class Game:
         Cabane_d_hagrid.add_character(Character("Hagrid", "Un sorcier de renomée à Poudlard",Cabane_d_hagrid, ["Vous n'auriez pas vu Harry Potter ?"]))
         
         Foret_interdite = Room("Foret_interdite", "la foret interdite. Vous entendez un loup garou au loin , mieux vaut ne pas s'impatienter ici.")
+        Foret_interdite.inventory_room.add_item(Item("Poudre_de_cheminette","Cette substance permet de vous téléporter dans une des pièces pièce que vous connaissez",1))
+        Foret_interdite.inventory_room.items["Poudre_de_cheminette"].is_beamer = True
 
         Chambre_des_Secrets=Room("Chambre_des_Secrets","la chambre des secrets. Une odeur putride émane du sol.")
         Chambre_des_Secrets.inventory_room.add_item(Item("Dent_de_Basilic","Attention, elle est tranchante ! ",1))
