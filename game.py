@@ -149,9 +149,10 @@ class Game:
         Cabane_d_hagrid.add_character(Character("Hagrid", "Un sorcier de renomée à Poudlard",Cabane_d_hagrid, ["Vous n'auriez pas vu Harry Potter ?"]))
         
         Foret_interdite = Room("Foret_interdite", "la foret interdite. Vous entendez un loup garou au loin , mieux vaut ne pas s'impatienter ici.")
-        Foret_interdite.inventory_room.add_item(Item("Torche","Cela pourrait vous guider ",2))
+
         Chambre_des_Secrets=Room("Chambre_des_Secrets","la chambre des secrets. Une odeur putride émane du sol.")
-        
+        Chambre_des_Secrets.inventory_room.add_item(Item("Dent_de_Basilic","Attention, elle est tranchante ! ",1))
+
         for room in [Hall_d_entree,Grotte,Toilettes,Couloir,Dortoirs,Salle_secrete,Salle_a_manger,Jardin,Terrain_de_quidditch,Cabane_d_hagrid,Foret_interdite,Chambre_des_Secrets]:
             self.rooms.append(room)
 
@@ -204,11 +205,12 @@ class Game:
             reward="Titre de petit collectionneur"
         )
 
+        dobby_reward = Item("Torche","Cela pourrait vous guider ",2)
         meet_quest = Quest(
             title="Bavardeur magique",
             description="Interagir avec Dobby",
-            objectives=["Parler avec Dobby"],
-            reward="Titre de Bavardeur magique"
+            objectives=["parler avec Dobby"],
+            reward=dobby_reward
         )
 
         # Add quests to player's quest manager

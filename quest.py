@@ -1,5 +1,5 @@
 """ Define the Quest class"""
-
+from item import Item
 class Quest:
     """
     This class represents a quest in the game. A quest has a title, description,
@@ -130,7 +130,18 @@ class Quest:
             if self.reward:
                 print(f"🎁 Récompense: {self.reward}")
                 if player:
-                    player.add_reward(self.reward)
+                    # Si la récompense est un objet (et non une simple description)
+                    if isinstance(self.reward, Item):
+                        current_weight = sum(item.weight for item in player.inventory.items.values())
+                        new_weight = current_weight + self.reward.weight
+                        if new_weight <= player.max_weight:
+                            player.inventory.add_item(self.reward)
+                            print(f"L'objet {self.reward.name} a été ajouté à votre inventaire.")
+                        else:
+                            player.current_room.inventory_room.add_item(self.reward)
+                            print(f"Votre inventaire est plein. L'objet {self.reward.name} a été déposé dans la pièce.")
+                    else:
+                        player.add_reward(self.reward)
             print()
 
 

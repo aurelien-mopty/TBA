@@ -2,6 +2,7 @@
 
 from inventory import Inventory
 from quest import QuestManager
+from item import Item
 
 class Player():
     """
@@ -177,9 +178,19 @@ class Player():
         >>> len(player.rewards)
         1
         """
-        if reward and reward not in self.rewards:
-            self.rewards.append(reward)
-            print(f"\n🎁 Vous avez obtenu: {reward}\n")
+        if isinstance(reward, Item):
+            current_weight = sum(item.weight for item in self.inventory.items.values())
+            new_weight = current_weight + reward.weight
+            if new_weight <= self.max_weight:
+                self.inventory.add_item(reward)
+                print(f"\n🎁 Vous avez obtenu l'objet: {reward.name}\n")
+            else:
+                self.current_room.inventory_room.add_item(reward)
+                print(f"\n🎁 Votre inventaire est plein. L'objet {reward.name} a été déposé dans la pièce.\n")
+        else:
+            if reward not in self.rewards:
+                self.rewards.append(reward)
+                print(f"\n🎁 Vous avez obtenu: {reward}\n")
 
 
     def show_rewards(self):

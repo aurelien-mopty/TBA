@@ -387,6 +387,8 @@ class Actions:
         msg = character.get_msg(player)
         print(f"{character_name} : {msg}") 
 
+        game.player.quest_manager.check_action_objectives("parler", character_name)
+
         return True
     
     @staticmethod
