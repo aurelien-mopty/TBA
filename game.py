@@ -65,44 +65,44 @@ class Game:
                                            , 0)
         self.commands["history"] = Command("history"
                                            , " : afficher l'historique"
-                                           , Actions.rewards
+                                           , Actions.history
                                            , 0)
         self.commands["back"] = Command("back"
                                            , " : retourner en arrière "
-                                           , Actions.rewards
+                                           , Actions.back
                                            , 0)
         self.commands["check"] = Command("check"
                                            , " : afficher l'inventaire "
-                                           , Actions.rewards
+                                           , Actions.check
                                            , 0)
 
         self.commands["look"] = Command("look"
                                            , " : afficher l'inventaire de la piece"
-                                           , Actions.rewards
+                                           , Actions.look
                                            , 0)
         self.commands["take"] = Command("take"
                                            , " : prendre un item"
-                                           , Actions.rewards
+                                           , Actions.take
                                            , 1)
         self.commands["drop"] = Command("drop"
                                            , " : Jeter un item"
-                                           , Actions.rewards
+                                           , Actions.drop
                                            , 1)
         self.commands["charge"] = Command("charge"
                                            , " : Charger une pièce avec un beamer  "
-                                           , Actions.rewards
+                                           , Actions.charge
                                            , 0)
         self.commands["use"] = Command("use"
                                            , " : Utiliser le beamer pour vous téléporter dans la pièce chargée "
-                                           , Actions.rewards
+                                           , Actions.use
                                            , 1)
         self.commands["unlock"] = Command("unlock"
                                            , " : Dévérouiller une porte "
-                                           , Actions.rewards
+                                           , Actions.unlock
                                            , 1)
         self.commands["talk"] = Command("talk"
                                            , " : Intéragir avec un PNJ "
-                                           , Actions.rewards
+                                           , Actions.talk
                                            , 1)
         
     def _setup_rooms(self):
@@ -145,7 +145,7 @@ class Game:
         Terrain_de_quidditch.inventory_room.add_item(Item("balai","Ce balai vous permet de vous envoler dans les cieux",3))
         
         Cabane_d_hagrid = Room("Cabane_d_hagrid", "la cabane d'Hagrid.Cette maisonnette est petite mais le feu de bois vous rechauffe . Vous remarquez que le coffre d'Hagrid est ouvert")
-        Cabane_d_hagrid.inventory_room.add_item(Item("oeuf de dragon","Attention , il va bientot éclore ",5))
+        Cabane_d_hagrid.inventory_room.add_item(Item("Oeuf_de_dragon","Attention , il va bientot éclore ",5))
         Cabane_d_hagrid.add_character(Character("Hagrid", "Un sorcier de renomée à Poudlard",Cabane_d_hagrid, ["Vous n'auriez pas vu Harry Potter ?"]))
         
         Foret_interdite = Room("Foret_interdite", "la foret interdite. Vous entendez un loup garou au loin , mieux vaut ne pas s'impatienter ici.")
@@ -222,7 +222,16 @@ class Game:
         self.player.quest_manager.add_quest(travel_quest)
         self.player.quest_manager.add_quest(discovery_quest)
 
-
+    def win(self):
+        return all(quest.is_completed for quest in self.player.quest_manager.quests)
+    
+    def lose(self):
+        if self.player.current_room.name == "Grotte":
+            required_items = ["baguette", "Mandragore", "Oeuf_de_dragon", "Torche", "balai"]
+            has_required_items = all(any(item.name == required_item for required_item in required_items) for item in self.player.inventory.items.values())
+            return not has_required_items
+        return False
+    
     # Play the game
     def play(self):
         if DEBUG:
@@ -251,8 +260,15 @@ class Game:
                                     print(" message debug, position de mimi:")
                                     print(character.current_room.name)
                                 character.move()
-        return None
 
+            if self.win():
+                print("\n🎉 Félicitations ! Vous avez complété toutes les quêtes et gagné la partie !\n")
+                self.finished = True
+
+            if self.lose():
+                print("\n❌ Vous avez perdu la partie ! Vous n'aviez pas les obejts nécessaires pour vaincre le Basilic.\n")
+                self.finished = True
+   
     # Process the command entered by the player
     def process_command(self, command_string) -> None:
         """Process the command entered by the player."""
