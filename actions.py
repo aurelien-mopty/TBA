@@ -10,7 +10,8 @@
 # The error message is different depending on the number of parameters expected by the command.
 
 
-# The error message is stored in the MSG0 and MSG1 variables and formatted with the command_word variable, the first word in the command.
+# The error message is stored in the MSG0 and MSG1 variables and formatted with the
+# command_word variable, the first word in the command.
 # The MSG0 variable is used when the command does not take any parameter.
 MSG0 = "\nLa commande '{command_word}' ne prend pas de paramètre.\n"
 # The MSG1 variable is used when the command takes 1 parameter.
@@ -43,9 +44,8 @@ class Actions:
         False
         >>> go(game, ["go"], 1)
         False
-
         """
-        
+
         player = game.player
         l = len(list_of_words)
         # If the number of parameters is incorrect, print an error message and return False.
@@ -66,7 +66,7 @@ class Actions:
         for liste in directionpossible:
             if direction in liste[0] :
                 direction=liste[1]
-        
+
         if direction not in game.valid_directions:
             print(f"\n La direction {direction} n'est pas valide. Les directions possibles sont : {', '.join(sorted(game.valid_directions))}\n")
             return False
@@ -107,7 +107,7 @@ class Actions:
             command_word = list_of_words[0]
             print(MSG0.format(command_word=command_word))
             return False
-        
+
         # Set the finished attribute of the game object to True.
         player = game.player
         msg = f"\nMerci {player.name} d'avoir joué. Au revoir.\n"
@@ -148,7 +148,7 @@ class Actions:
             command_word = list_of_words[0]
             print(MSG0.format(command_word=command_word))
             return False
-        
+
         # Print the list of available commands.
         print("\nVoici les commandes disponibles:")
         for command in game.commands.values():
@@ -165,7 +165,7 @@ class Actions:
             command_word = list_of_words[0]
             print(MSG0.format(command_word=command_word))
             return False
-        
+
         print(player.get_history())
 
     @staticmethod
@@ -184,10 +184,12 @@ class Actions:
         if player.current_room.name=="Chambre_des_secrets":
             print("Vous ne pouvez pas sortir")
         else:
-            #lorsque l'on a déjà visité une pièce, on décrémente la valeur associée à la clé du dictionnaire
-            #self.visited_rooms_indexs pour ne pas supprimer la pièce de l'historique
+            #lorsque l'on a déjà visité une pièce,
+            #on décrémente la valeur associée à la clé du dictionnaire
+            #self.visited_rooms_indexs pour ne pas supprimer
+            #la pièce de l'historique
             #lorqu'une pièce n'est visitée qu'une fois, cette dernière est bien supprimée de l'historique
-            deleted_room = player.past_room.pop() 
+            deleted_room = player.past_room.pop()
             player.current_room = deleted_room
             player.visited_rooms_indexs[deleted_room.name]-=1 
             if player.visited_rooms_indexs[deleted_room.name]==0:
@@ -222,7 +224,7 @@ class Actions:
         for item in player.inventory.items.values():
             if item.name=="Torche":
                 player.current_room.dark=False
-        
+
         if player.current_room.name=="Salle_secrete" and player.current_room.dark==False:
             print("Grace à votre torche vous y voyez mieux")   
 
@@ -252,13 +254,10 @@ class Actions:
             print(f"L'objet est trop lourd !")
             return False
 
-        
         player.inventory.add_item(item)
         room.inventory_room.remove_item(item_name)
         print(f"Vous avez pris l'objet '{item_name}' ")
-        
         game.player.quest_manager.check_item_objectives()
-        
         return True
 
     @staticmethod 
@@ -280,7 +279,7 @@ class Actions:
         room.inventory_room.add_item(item)
         print(f"vous avez déposé l'objet '{item_name}' ")
         return True
-    
+
     @staticmethod
     def charge(game, list_of_words, number_of_parameters):
         player = game.player
@@ -290,16 +289,16 @@ class Actions:
             command_word = list_of_words[0]
             print(MSG0.format(command_word=command_word))
             return False
-        
+
         cherche_beamer = None
         for item in player.inventory.items.values():
             if item.is_beamer:
                 cherche_beamer = item
-            
+    
         if cherche_beamer is None:
             print("Vous ne disposez pas de la Poudre de cheminette pour charger cette pièce ! ")
             return False
-    
+
         cherche_beamer.charged_room = player.current_room
         print(f"Vous avez chargé la Poudre de cheminette dans {player.current_room.name}")
         return True
@@ -313,12 +312,12 @@ class Actions:
             command_word = list_of_words[0]
             print(MSG1.format(command_word=command_word))
             return False
-        
+
         item_name = list_of_words[1]
         if item_name not in player.inventory.items:
             print(f"Vous ne disposez pas de la {item_name} pour vous téléporter ! ")
             return False
-        
+
         item = player.inventory.items[item_name]
 
         if not item.is_beamer:
@@ -328,7 +327,7 @@ class Actions:
         if item.charged_room is None:
             print("La Poudre de cheminette n'a été chargée avec aucune pièce !")
             return False
-        
+
         player.current_room = item.charged_room
         print(f"Vous avez été téléporté dans la pièce : {item.charged_room.name}")
         print(item.charged_room.get_long_description())
@@ -343,9 +342,8 @@ class Actions:
             command_word = list_of_words[0]
             print(MSG1.format(command_word=command_word))
             return False
-        
-        direction = list_of_words[1].upper()
 
+        direction = list_of_words[1].upper()
         if direction not in player.current_room.doors:
             print(f"Il n'y a pas de porte dans la direction {direction}.")
             return False
@@ -379,9 +377,8 @@ class Actions:
             command_word = list_of_words[0]
             print(MSG1.format(command_word=command_word))
             return False
-        
-        character_name= list_of_words[1]
 
+        character_name= list_of_words[1]
         if character_name not in player.current_room.characters:
             print(f"Le personnage {character_name} n'est pas ici.")
             return False
@@ -392,7 +389,7 @@ class Actions:
         game.player.quest_manager.check_action_objectives("parler", character_name)
 
         return True
-    
+
     @staticmethod
     def quests(game, list_of_words, number_of_parameters):
         """
@@ -436,7 +433,7 @@ class Actions:
         # Show all quests
         game.player.quest_manager.show_quests()
         return True
-    
+
     @staticmethod
     def quest(game, list_of_words, number_of_parameters):
         """
@@ -471,7 +468,6 @@ class Actions:
         La commande 'quest' prend 1 seul paramètre.
         <BLANKLINE>
         False
-
         """
         # If the number of parameters is incorrect, print an error message and return False.
         n = len(list_of_words)
@@ -491,12 +487,12 @@ class Actions:
         # Show quest details
         game.player.quest_manager.show_quest_details(quest_title, current_counts)
         return True
-    
+
     @staticmethod
     def activate(game, list_of_words, number_of_parameters):
         """
         Activate a specific quest.
-        
+
         Args:
             game (Game): The game object.
             list_of_words (list): The list of words in the command.
@@ -521,7 +517,6 @@ class Actions:
         La commande 'activate' prend 1 seul paramètre.
         <BLANKLINE>
         False
-
         """
         # If the number of parameters is incorrect, print an error message and return False.
         n = len(list_of_words)
@@ -544,12 +539,11 @@ class Actions:
         #             Vérifiez le nom ou si elle n'est pas déjà active.\n")
         return False
 
-
     @staticmethod
     def rewards(game, list_of_words, number_of_parameters):
         """
         Display all rewards earned by the player.
-        
+
         Args:
             game (Game): The game object.
             list_of_words (list): The list of words in the command.
