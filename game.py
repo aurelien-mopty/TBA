@@ -300,8 +300,8 @@ class Game:
     def print_welcome(self):
         """Print the welcome message."""
 
-        print(f"\nBienvenue {self.player.name} dans ce jeu d'aventure !")
-        print("Entrez 'help' si vous avez besoin d'aide.")
+        print(f"\nBienvenue {self.player.name} dans l'école de magie de Poudlard ! Pensez à activer toutes vos quêtes avant de commencer à jouer.")
+        print("N'hesitez pas à entrer 'help' si vous avez besoin d'aide.")
 
         print(self.player.current_room.get_long_description())
 
