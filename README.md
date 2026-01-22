@@ -75,37 +75,4 @@ python ./game.py
 | rewards | Affiche les récompenses obtenues.|
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![alt text](image.png)
