@@ -26,6 +26,15 @@ Le jeu se déroule dans le château de Poudlard et ses environs. Vous pourrez ex
 - La Forêt interdite
 - La Chambre des Secrets
 
+![alt text](CarteTba.png)
+
+### Personnages non Joueur
+Plusieurs Personnage non Joueur se trouve dans l'école de Poudlard et ses alentours:
+- McGonagal
+- Dobby
+- Crabbe
+- MimiGeignard (qui peut se déplacer à travers la carte)
+- Hagrid
 ### Conditions de Victoire
 
 Pour gagner la partie, vous devez compléter toutes les quêtes disponibles :
@@ -74,5 +83,30 @@ python ./game.py
 | activate <titre>| Active une quête spécifique.|
 | rewards | Affiche les récompenses obtenues.|
 
+## Guide Developpeur
+
+### Diagramme de classes:
 
 ![alt text](image.png)
+
+
+
+## Perspectives de Développement
+Voici quelques amelioration que nous aurions pu ajouté à notre jeu TBA
+
+### Developpement des Personnages Non Joueur
+Le role et les capacités des Personnages non joueur assez limité dans notre jeu .Il n'y en a que 5 ayant tous maximum deux repliques. Un seul ne sert vraiment au cours du jeu et un seul a la capacité de se deplacé.Voici quelques possibilité d'amélioration pour nos PNJ:
+
+- Leur donner plus de dialogue et surtout des dialogues à choix 
+- Leur donner des réactions differentes en fonctions de l'inventaire (déja fait avec Dobby mais assez limité) et des quetes( par exemple un pnj qui nous felicite si on fini le jeu )
+- Ajout de dialogue à choix multiples( qui aurait un impact sur les reponses des pnj)
+
+### Enrichissement des quetes
+
+Les quetes restent assez limité et servent toutes à finir le jeu . Voici quelques possibilité de devellopement pour les quetes:
+
+- Ajout de quetes à embranchement (avec un choix que le joueur doit faire pour la suite du jeu )
+- Ajout de quetes secondaires pour rallonger le temps de jeu 
+
+
+
