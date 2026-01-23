@@ -110,7 +110,7 @@ class Player():
         if direction in self.current_room.doors and self.current_room.doors[direction].locked:
             print(f"\nLa porte vers le {direction} est verrouillée. Vous devez la déverrouiller d'abord.\n")
             return False
-        
+
         # Get the next room from the exits dictionary of the current room.
         next_room = self.current_room.exits[direction]
 
@@ -127,7 +127,7 @@ class Player():
             self.visited_rooms_indexs[self.current_room.name]=1
         else:
             self.visited_rooms_indexs[self.current_room.name]+=1
-        
+
         # Set the current room to the next room.
         self.current_room = next_room
         print(self.current_room.get_long_description())
@@ -137,19 +137,14 @@ class Player():
         # Check room visit objectives
         self.quest_manager.check_room_objectives(self.current_room.name)
 
-
-    
         if self.current_room.name == "Chambre_des_Secrets":
             for quest in self.quest_manager.active_quests:
                 if quest.title=="Explorateur de Poudlard":
                     quest.complete_objective("Visiter Chambre des Secrets", self)
-                    
-
 
         # Increment move counter and check movement objectives
         self.move_count += 1
         self.quest_manager.check_counter_objectives("Se déplacer", self.move_count)
-
         return True
 
     def can_back(self):#Verifie si la liste history  est vide , si oui
@@ -160,9 +155,8 @@ class Player():
         for room in self.history:
             str_history+="-" + room.name +"\n"
         return str_history
-    
-    
-    def get_inventory_player(self): 
+
+    def get_inventory_player(self):
         ch1="Votre inventaire est vide."
         ch2="Vous disposez des items suivants :\n"
         return self.inventory.get_inventory(ch1,ch2)
@@ -200,7 +194,6 @@ class Player():
             if reward not in self.rewards:
                 self.rewards.append(reward)
                 print(f"\n🎁 Vous avez obtenu: {reward}\n")
-
 
     def show_rewards(self):
         """
