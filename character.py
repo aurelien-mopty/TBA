@@ -1,10 +1,9 @@
 import random
-
 class Character:
     def __init__(self, name,description, current_room, msgs, required_items=None):
-        self.name = name 
-        self.description = description  
-        self.current_room = current_room 
+        self.name = name
+        self.description = description
+        self.current_room = current_room
         self.msgs = msgs.copy()
         self.displayed_msgs = []
         self.required_items = required_items if required_items is not None else []
@@ -33,16 +32,14 @@ class Character:
             if player is not None and self.required_items:
                 has_required_items = any(any(item.name == required_item for required_item in self.required_items) for item in player.inventory.items.values())
                 if not has_required_items:
-                    return f"Sera tu assez valeureux pour trouver la baguette , si tu y arrives je te donnerais un indice."
+                    return print("Seras tu assez valeureux pour trouver la baguette. Si tu y arrives, je te donnerai un indice.")
 
             if not self.msgs:
-                return"J n'ai rien à dire."
-            msg= self.msgs.pop(0)
+                return"Je n'ai rien à dire."
+            msg = self.msgs.pop(0)
             self.displayed_msgs.append(msg)
-        
 
             if not self.msgs:
                 self.msgs = self.displayed_msgs.copy()
                 self.displayed_msgs = []
             return msg
-

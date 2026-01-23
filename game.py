@@ -104,50 +104,39 @@ class Game:
                                            , " : Intéragir avec un PNJ "
                                            , Actions.talk
                                            , 1)
-        
+
     def _setup_rooms(self):
         Hall_d_entree = Room("Hall_d_entree", "Le hall d'entrée de la fameuse école de magie Poudlard. Un elève pressé d'aller manger vous bouscule.")
-
         Hall_d_entree.add_character(Character("McGonagall", "La directrice de Gryffondor",Hall_d_entree, ["Vous êtes en retard, dépêchez-vous !!"]))
-
 
         Grotte= Room("Grotte", "Une grotte etrange. Il fait très sombre. .")
 
-
         Toilettes = Room("Toilettes", "les toilettes .Vous remarquez qu'une odeur se dégage des escaliers menant vers une pièce sombre.")
-
         Toilettes.inventory_room.add_item(Item("bijoux oublié ","Il semble que quelqu'un a perdu son bijoux",8))
-       
-        Couloir = Room("Couloir", "le couloir . Un surveillant vous presse pour que vous ne restiez pas oisif dans le couloir. Il est à peine 13h mais étant fatigué vous avez envie monté aux dortoirs pour faire une sieste.")
 
+        Couloir = Room("Couloir", "le couloir . Un surveillant vous presse pour que vous ne restiez pas oisif dans le couloir. Il est à peine 13h mais étant fatigué vous avez envie monté aux dortoirs pour faire une sieste.")
         Couloir.add_character(Character("Mimi_Geignarde", "Un fantome qui se balade dans poudlard ",Couloir, ["Tu es nouveau toi?"]))
 
-
         Dortoirs = Room("Dortoirs", "les dortoirs .Une petite fée malicieuse se trouve sur votre lit , vous vous demandez comment ce petit etre vicieux à pu rentrer dans votre chambre.")
-
         Dortoirs.add_character(Character("Dobby", "Un petit elfe de maison",Dortoirs, ["Vous etes brave jeune sorcier . Voici mon indice: si vous voulez passer par la grotte vous aurez besoin de cinq objets magique pour survivre."],  required_items=["baguette"]))
 
-        
         Salle_secrete = Room("Salle_secrete", "la salle secrete.Peu d'eleves connaissent l'existence de cette endroit, mais les habitués du lieu s'y cachent pour consommer leur poudre de mandragore ou pour acceder rapidement aux dortoirs.",True)
-
         Salle_secrete.inventory_room.add_item(Item("baguette","Cette baguette vous permet de lancer des sorts",2))
-        
 
         Salle_a_manger = Room("Salle_a_manger", " la salle à manger.La delicieuse odeur de poulet roti vous donnes faim . Vous remarquer un petit passage dérobé derriere le buffet.")
-
         Salle_a_manger.inventory_room.add_item(Item("clé", "une clé rouillée qui semble ancienne", 1))
         Salle_a_manger.add_character(Character("Crabbe", "Un élève gourmand qui ne devrait pas ête là",Salle_a_manger, ["Tu vas finir ton cookie ?"]))
 
         Jardin = Room("Jardin", " le jardin. Il y'a des plantes magiques provenant des quatres coins du monde.Des domestiques gobelins taillent les haies .")
         Jardin.inventory_room.add_item(Item("Mandragore","Cette racine pousse un cri strident , bouchez vous les oreilles",2))
-        
+
         Terrain_de_quidditch = Room("Terrain_de_quidditch", " sur le terrain de quidditch .L'équipe de serpentard s'entraine pour la finale de la coupe de Poudelard. Vous avez failli vous prendre la balle en pleine tete.")
         Terrain_de_quidditch.inventory_room.add_item(Item("balai","Ce balai vous permet de vous envoler dans les cieux",3))
-        
+
         Cabane_d_hagrid = Room("Cabane_d_hagrid", "la cabane d'Hagrid.Cette maisonnette est petite mais le feu de bois vous rechauffe . Vous remarquez que le coffre d'Hagrid est ouvert")
         Cabane_d_hagrid.inventory_room.add_item(Item("Oeuf_de_dragon","Attention , il va bientot éclore ",5))
         Cabane_d_hagrid.add_character(Character("Hagrid", "Un sorcier de renomée à Poudlard",Cabane_d_hagrid, ["Vous n'auriez pas vu Harry Potter ?"]))
-        
+
         Foret_interdite = Room("Foret_interdite", "la foret interdite. Vous entendez un loup garou au loin , mieux vaut ne pas s'impatienter ici.")
         Foret_interdite.inventory_room.add_item(Item("Poudre_de_cheminette","Cette substance permet de vous téléporter dans une des pièces pièce que vous connaissez",1))
         Foret_interdite.inventory_room.items["Poudre_de_cheminette"].is_beamer = True
@@ -173,19 +162,12 @@ class Game:
         Toilettes.doors = {"D": Door(Grotte, "D", locked=True)}
         """Grotte.doors = {"U": Door(Toilettes, "U")}"""#porte de la chambre des secrets vers les toilettes    
 
-       
-
-        
-    
-
-
     def _setup_player(self, player_name=None):
-        
         if player_name is None:
             player_name = input("\nEntrez votre nom: ")
 
         self.player = Player(player_name)
-        
+
         self.player.current_room = self.rooms[0]  # swamp
         self.valid_directions = set()
         for room in self.rooms:
@@ -222,7 +204,7 @@ class Game:
 
     def win(self):
         return all(quest.is_completed for quest in self.player.quest_manager.quests)
-    
+
     def lose(self):
         if self.player.current_room.name == "Grotte":
             required_items = ["baguette", "Mandragore", "Oeuf_de_dragon", "Torche", "balai"]
@@ -231,19 +213,17 @@ class Game:
             #for item in inventory_items:
                 #print(f"- {item}")
 
-
             has_required_items = all(item in inventory_items for item in required_items)
             if not has_required_items:
                 print("\n❌ Vous avez perdu la partie ! Vous n'aviez pas les objets nécessaires pour vaincre le Basilic.\n")
                 return True
         return False
-    
+
     # Play the game
     def play(self):
         if DEBUG:
             print("DEBUG: Début de la partie.")
         
-
         self.setup()
         self.print_welcome()
         while not self.finished:
@@ -268,7 +248,6 @@ class Game:
                                 character.move()
 
                 self.player.quest_manager.check_item_objectives()
-        
 
             if self.win():
                 print("\n🎉 Félicitations ! Vous avez complété toutes les quêtes et gagné la partie !\n")
@@ -276,7 +255,7 @@ class Game:
 
             if self.lose():
                 self.finished = True
-   
+
     # Process the command entered by the player
     def process_command(self, command_string) -> None:
         """Process the command entered by the player."""
@@ -293,8 +272,6 @@ class Game:
         else:
             command = self.commands[command_word]
             command.action(self, list_of_words, command.number_of_parameters)
-       
-       
 
     # Print the welcome message
     def print_welcome(self):
@@ -302,14 +279,11 @@ class Game:
 
         print(f"\nBienvenue {self.player.name} dans l'école de magie de Poudlard ! Pensez à activer toutes vos quêtes avant de commencer à jouer.")
         print("N'hesitez pas à entrer 'help' si vous avez besoin d'aide.")
-
         print(self.player.current_room.get_long_description())
-
 
 def main():
     """Create a game object and play the game"""
     Game().play()
-
 
 if __name__ == "__main__":
     main()

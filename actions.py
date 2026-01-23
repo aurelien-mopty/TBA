@@ -184,21 +184,20 @@ class Actions:
         if player.current_room.name=="Chambre_des_secrets":
             print("Vous ne pouvez pas sortir")
         else:
-            #lorsque l'on a déjà visité une pièce,
-            #on décrémente la valeur associée à la clé du dictionnaire
-            #self.visited_rooms_indexs pour ne pas supprimer
-            #la pièce de l'historique
-            #lorqu'une pièce n'est visitée qu'une fois, cette dernière est bien supprimée de l'historique
+            #lorsque l'on a déjà visité une pièce, on décrémente la valeur associée à la clé du dictionnaire
+            #self.visited_rooms_indexs pour ne pas supprimer la pièce de l'historique
+            #lorqu'une pièce n'est visitée qu'une fois,
+            #cette dernière est bien supprimée de l'historique
             deleted_room = player.past_room.pop()
             player.current_room = deleted_room
-            player.visited_rooms_indexs[deleted_room.name]-=1 
-            if player.visited_rooms_indexs[deleted_room.name]==0:
+            player.visited_rooms_indexs[deleted_room.name] -= 1
+            if player.visited_rooms_indexs[deleted_room.name] == 0:
                 player.visited_rooms_indexs.pop(deleted_room.name)
                 player.history.remove(deleted_room)
             print(player.current_room.get_long_description())
             print(player.get_history())
 
-    @staticmethod      
+    @staticmethod
     def check(game, list_of_words, number_of_parameters):
         player = game.player
         l = len(list_of_words)
@@ -207,7 +206,7 @@ class Actions:
             command_word = list_of_words[0]
             print(MSG0.format(command_word=command_word))
             return False
-        
+
         print(player.get_inventory_player())
 
     @staticmethod
@@ -226,7 +225,7 @@ class Actions:
                 player.current_room.dark=False
 
         if player.current_room.name=="Salle_secrete" and player.current_room.dark==False:
-            print("Grace à votre torche vous y voyez mieux")   
+            print("Grace à votre torche vous y voyez mieux")
 
         if player.current_room.dark is True:
             print("Il fait trop sombre pour voir quelques chose")
@@ -260,7 +259,7 @@ class Actions:
         game.player.quest_manager.check_item_objectives()
         return True
 
-    @staticmethod 
+    @staticmethod
     def drop(game, list_of_words, number_of_parameters):
         player = game.player
         l = len(list_of_words)
@@ -294,7 +293,7 @@ class Actions:
         for item in player.inventory.items.values():
             if item.is_beamer:
                 cherche_beamer = item
-    
+
         if cherche_beamer is None:
             print("Vous ne disposez pas de la Poudre de cheminette pour charger cette pièce ! ")
             return False
@@ -303,7 +302,7 @@ class Actions:
         print(f"Vous avez chargé la Poudre de cheminette dans {player.current_room.name}")
         return True
 
-    @staticmethod 
+    @staticmethod
     def use(game, list_of_words, number_of_parameters):
         player = game.player
         l = len(list_of_words)
@@ -384,7 +383,7 @@ class Actions:
             return False
         character = player.current_room.characters[character_name]
         msg = character.get_msg(player)
-        print(f"{character_name} : {msg}") 
+        print(f"{character_name} : {msg}")
 
         game.player.quest_manager.check_action_objectives("parler", character_name)
 
