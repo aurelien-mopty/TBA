@@ -8,7 +8,7 @@ Un jeu d'aventure textuel inspiré de l'univers de Poudlard.
 
 ### Description
 
-Plongez dans l'univers magique de Poudlard à travers ce jeu d'aventure textuel. Vous incarnez un élève de Poudlard qui doit explorer le château, interagir avec des personnages emblématiques, et collecter des objets magiques pour accomplir des quêtes.
+Plongez dans l'univers magique de Poudlard à travers ce jeu d'aventure textuel. Vous incarnez un élève de Poudlard qui doit explorer le château, interagir avec des personnages emblématiques et collecter des objets magiques pour accomplir des quêtes.
 
 ### Univers
 
@@ -28,9 +28,9 @@ Le jeu se déroule dans le château de Poudlard et ses environs. Vous pourrez ex
 
 ![alt text](CarteTba.png)
 
-### Personnages non Joueur
-Plusieurs Personnage non Joueur se trouve dans l'école de Poudlard et ses alentours:
-- McGonagal
+### Personnages non joueur
+Plusieurs personnages non joueur se trouvent dans l'école de Poudlard et ses alentours:
+- McGonagall
 - Dobby
 - Crabbe
 - MimiGeignard (qui peut se déplacer à travers la carte)
@@ -92,21 +92,23 @@ python ./game.py
 
 
 ## Perspectives de Développement
-Voici quelques amelioration que nous aurions pu ajouté à notre jeu TBA
+Voici quelques ameliorations que nous aurions pu ajouter à notre jeu TBA :
 
-### Developpement des Personnages Non Joueur
-Le role et les capacités des Personnages non joueur assez limité dans notre jeu .Il n'y en a que 5 ayant tous maximum deux repliques. Un seul ne sert vraiment au cours du jeu et un seul a la capacité de se deplacé.Voici quelques possibilité d'amélioration pour nos PNJ:
+### Developpement des personnages non joueur
+Le role et les capacités des personnages non joueur qui sont assez limités dans notre jeu. Il n'y en a que 5 ayant tous maximum deux repliques. Un seul ne sert vraiment au cours du jeu et un seul a la capacité de se deplacer.Voici quelques possibilités d'améliorations pour nos PNJ:
 
-- Leur donner plus de dialogue et surtout des dialogues à choix 
-- Leur donner des réactions differentes en fonctions de l'inventaire (déja fait avec Dobby mais assez limité) et des quetes( par exemple un pnj qui nous felicite si on fini le jeu )
-- Ajout de dialogue à choix multiples( qui aurait un impact sur les reponses des pnj)
+- Leur donner plus de dialogues et surtout des dialogues à choix 
+- Leur donner des réactions differentes en fonction de l'inventaire (déja fait avec Dobby mais assez limité) et des queêtes (par exemple un PNJ qui nous félicite si on finit le jeu)
+- Ajout de dialogues à choix multiples( qui aurait un impact sur les reponses des PNJ)
 
-### Enrichissement des quetes
+### Enrichissement des quêtes
 
-Les quetes restent assez limité et servent toutes à finir le jeu . Voici quelques possibilité de devellopement pour les quetes:
+Les quêtes restent assez limitées et servent toutes à finir le jeu. Voici quelques possibilités de développement pour les quêtes:
 
-- Ajout de quetes à embranchement (avec un choix que le joueur doit faire pour la suite du jeu )
-- Ajout de quetes secondaires pour rallonger le temps de jeu 
+- Ajout de quêtes à embranchement (avec un choix que le joueur doit faire pour la suite du jeu)
+- Ajout de quêtes secondaires pour rallonger le temps de jeu.
+
+### **Bon jeu !**
 
 
 
